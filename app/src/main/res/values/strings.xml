@@ -4,11 +4,12 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-        <!--    SignUp and Login -->
+    <!--    SignUp and Login -->
     <string name="hello">Hello</string>
     <string name="hello_login_massage">Let’s get new items by bartering !</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
     <string name="forget_password">Forget Password?</string>
     <string name="Login">Login</string>
     <string name="SignUp">Sign Up</string>
@@ -24,12 +25,13 @@
     <string name="want_to_bartered">want to bartered !</string>
     <string name="Your_item_name">Your item name</string>
     <string name="describe_your_item">Describe your item here ...</string>
-
+    description
 
     <!--  details - items -->
     <string name="used_for">Used for:</string>
     <string name="purchased_price">Purchased Price</string>
     <string name="estimated_price">Estimated Price</string>
+    <string name="description">Description</string>
 
 
     <!--  side Menu -->
@@ -45,15 +47,25 @@
     <string name="phone">Phone</string>
 
 
-
     <!--  Add item -->
     <string name="upload_photo">Upload Photo</string>
     <string name="Years_of_use">Years of use</string>
     <string name="location">Location</string>
     <string name="short_description">Short Description</string>
     <string name="save">save</string>
+    <string name="item_name">Item Name</string>
+    <string name="item_name_example">example: phone</string>
+
+
 
     <!--    contact-popup-->
     <string name="contact">Contact..</string>
+    <string name="title_activity_second">secondActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
 
 </resources>
