@@ -27,7 +27,7 @@
                     style="@style/TextAppearance.MaterialComponents.Headline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:text="Name of the items"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/itemNameDetails"
                     app:srcCompat="@drawable/location_icon" />
@@ -47,49 +47,61 @@
                     android:id="@+id/cityNameDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:text="city name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/imageView3"
                     app:layout_constraintTop_toBottomOf="@+id/itemNameDetails" />
 
+
+                <TextView
+                    android:id="@+id/textView10"
+                    style="@style/TextAppearance.MaterialComponents.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/used_for"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cityNameDetails" />
 
                 <TextView
                     android:id="@+id/yearsOfUseDetails"
                     style="@style/TextAppearance.MaterialComponents.Body2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/boarder"
-                    android:text="Used For 2 to 3 years"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="32dp"
+                    android:text="2 to 3 years"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/divider2" />
+                    app:layout_constraintStart_toEndOf="@+id/textView10"
+                    app:layout_constraintTop_toBottomOf="@+id/cityNameDetails" />
 
                 <View
                     android:id="@+id/divider2"
                     android:layout_width="409dp"
                     android:layout_height="1dp"
                     android:layout_marginStart="1dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="1dp"
                     android:background="?android:attr/listDivider"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                    app:layout_constraintTop_toBottomOf="@+id/yearsOfUseDetails" />
 
                 <TextView
                     android:id="@+id/textView13"
                     style="@style/TextAppearance.MaterialComponents.Body2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
                     android:text="@string/purchased_price"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.41"
-                    app:layout_constraintStart_toEndOf="@+id/yearsOfUseDetails"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
                 <TextView
@@ -98,7 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="21dp"
+                    android:layout_marginTop="13dp"
                     android:text="40$"
                     android:textColor="@color/colorSecondaryVariant"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -112,7 +124,7 @@
                     android:layout_width="409dp"
                     android:layout_height="1dp"
                     android:layout_marginStart="1dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="1dp"
                     android:background="?android:attr/listDivider"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -133,30 +145,19 @@
                     app:srcCompat="@drawable/phone" />
 
 
+
                 <TextView
                     android:id="@+id/descrptionDetails"
-                    style="@style/TextAppearance.MaterialComponents.Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
+                    style="@style/TextAppearance.MaterialComponents.Caption"
+                    android:text="ipe the item fore exampl the item fore example, my item is good in ue item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usese etc..ood in use etc..etc.. in use etc.."
                     android:paddingStart="24dp"
                     android:paddingEnd="24dp"
-                    android:text="my item is good in ue item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, my item is good in usee item fore example, "
-                    android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-                <TextView
-                    android:id="@+id/textView7"
-                    style="@style/TextAppearance.MaterialComponents.Subtitle2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/description"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divider3" />
 

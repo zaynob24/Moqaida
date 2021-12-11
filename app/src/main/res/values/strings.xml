@@ -25,12 +25,13 @@
     <string name="want_to_bartered">want to bartered !</string>
     <string name="Your_item_name">Your item name</string>
     <string name="describe_your_item">Describe your item here ...</string>
-
+    description
 
     <!--  details - items -->
     <string name="used_for">Used for:</string>
     <string name="purchased_price">Purchased Price</string>
     <string name="estimated_price">Estimated Price</string>
+    <string name="description">Description</string>
 
 
     <!--  side Menu -->
@@ -52,6 +53,10 @@
     <string name="location">Location</string>
     <string name="short_description">Short Description</string>
     <string name="save">save</string>
+    <string name="item_name">Item Name</string>
+    <string name="item_name_example">example: phone</string>
+
+
 
     <!--    contact-popup-->
     <string name="contact">Contact..</string>

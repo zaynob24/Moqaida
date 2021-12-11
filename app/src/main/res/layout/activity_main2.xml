@@ -32,6 +32,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switchMaterial">
 
+
+
         <!--TextView with the Headline 4 as Material type system-->
         <TextView
             style="@style/TextAppearance.MaterialComponents.Headline4"
