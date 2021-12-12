@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item
+        android:id="@+id/subtitle"
+        android:title="Subtitle">
+        <menu>
+            <item
+                android:id="@+id/profileFragment2"
+                android:icon="@drawable/profile_icon"
+                android:title="@string/profile" />
+
+            <item
+                android:id="@+id/addItemFragment"
+                android:icon="@drawable/add_item_icon"
+                android:title="@string/add_items" />
+
+            <item
+                android:id="@+id/myItemFragment"
+                android:icon="@drawable/my_item_icon"
+                android:title="@string/my_items" />
+
+            <item
+                android:id="@+id/barteringRequestFragment"
+                android:icon="@drawable/request_notifi_icon"
+                android:title="@string/bartering_request" />
+
+        </menu>
+    </item>
+</menu>
