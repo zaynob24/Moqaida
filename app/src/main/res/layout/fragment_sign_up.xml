@@ -33,7 +33,7 @@
             android:text="@string/welcome_SignUp_massage" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/nameSignUpTextField"
+            android:id="@+id/descrptionUpdate"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

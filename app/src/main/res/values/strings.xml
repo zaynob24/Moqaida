@@ -57,15 +57,23 @@
     <string name="item_name_example">example: phone</string>
 
 
+    <!--  update item -->
+    <string name="change_photo">Change Photo</string>
 
     <!--    contact-popup-->
     <string name="contact">Contact..</string>
     <string name="title_activity_second">secondActivity</string>
+    <string name="massage_holder_example">Hi , I’m zainab ALjutayl ...  my laptob brand HP Pavilion Aero Laptop 13-be0007nx, 13.3", Windows 10 Home 64, AMD Ryzen™ 7, 16GB RAM, 512GB SSD, WUXGA, Pale rose gold, EN-AR KB - 4H580EA</string>
+
+
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+
+
 
 
 </resources>

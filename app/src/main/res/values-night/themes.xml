@@ -24,5 +24,15 @@
     <style name="lightedTextView" parent="Widget.MaterialComponents.TextView">
         <item name="android:textColor">?attr/colorSecondary</item>
     </style>
+    <style name="ColoredHeaderTextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/colorSecondary</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="textViewInCardView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/textGry</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 
 </resources>

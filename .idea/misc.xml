@@ -3,27 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Moqaida/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22870370370370371" />
-        <entry key="..\:/Moqaida/app/src/main/res/drawable/arrow_icon.xml" value="0.22870370370370371" />
-        <entry key="..\:/Moqaida/app/src/main/res/drawable/bartering_button.xml" value="0.3828125" />
-        <entry key="..\:/Moqaida/app/src/main/res/drawable/boarder.xml" value="0.25462962962962965" />
-        <entry key="..\:/Moqaida/app/src/main/res/drawable/email_icon.xml" value="0.22870370370370371" />
-        <entry key="..\:/Moqaida/app/src/main/res/drawable/paper_plane_icon.xml" value="0.22870370370370371" />
-        <entry key="..\:/Moqaida/app/src/main/res/drawable/whatsapp_icon.xml" value="0.3828125" />
-        <entry key="..\:/Moqaida/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Moqaida/app/src/main/res/layout/activity_main2.xml" value="0.5" />
-        <entry key="..\:/Moqaida/app/src/main/res/layout/activity_splash.xml" value="0.24320652173913043" />
-        <entry key="..\:/Moqaida/app/src/main/res/layout/all_item_layout.xml" value="0.25" />
-        <entry key="..\:/Moqaida/app/src/main/res/layout/fragment_add_item.xml" value="0.28804347826086957" />
-        <entry key="..\:/Moqaida/app/src/main/res/layout/fragment_first.xml" value="0.24320652173913043" />
-        <entry key="..\:/Moqaida/app/src/main/res/layout/fragment_home.xml" value="0.24320652173913043" />
-        <entry key="..\:/Moqaida/app/src/main/res/layout/fragment_item_details.xml" value="0.29891304347826086" />
+        <entry key="..\:/Moqaida/app/src/main/res/layout/activity_main.xml" value="0.28306159420289856" />
         <entry key="..\:/Moqaida/app/src/main/res/layout/fragment_login.xml" value="0.28940217391304346" />
-        <entry key="..\:/Moqaida/app/src/main/res/layout/fragment_second.xml" value="0.24320652173913043" />
-        <entry key="..\:/Moqaida/app/src/main/res/layout/fragment_sign_up.xml" value="0.24320652173913043" />
-        <entry key="..\:/Moqaida/app/src/main/res/layout/fragment_update_item.xml" value="0.28804347826086957" />
-        <entry key="..\:/Moqaida/app/src/main/res/layout/list_item_years.xml" value="0.28804347826086957" />
-        <entry key="..\:/Moqaida/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.15208333333333332" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/drawable/add_item_icon.xml" value="0.23425925925925925" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/drawable/bartering_button.xml" value="0.23425925925925925" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/drawable/boarder.xml" value="0.23425925925925925" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/drawable/profile_icon.xml" value="0.23425925925925925" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/drawable/request_notifi_icon.xml" value="0.23425925925925925" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/drawable/whatsapp_icon.xml" value="0.23425925925925925" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/activity_main.xml" value="0.4" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/activity_splash.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/all_item_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/bartering_dialog_layout.xml" value="0.2" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/contact_dialog_layout.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_add_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_bartering_request.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_item_details.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_my_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_sign_up.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_update_item.xml" value="0.264" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/list_item_years.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/my_item_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/request_item_layout.xml" value="0.264" />
       </map>
     </option>
   </component>

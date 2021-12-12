@@ -10,7 +10,8 @@
 
     <color name="gry">#6B6770</color>
     <color name="green">#67D449</color>
-
+    <color name="lightGry">#F3F0F0</color>
+    <color name="textGry">#808080</color>
 
     <color name="colorPrimary">@color/purple_500</color>
     <color name="colorPrimaryVariant">@color/purple_700</color>
