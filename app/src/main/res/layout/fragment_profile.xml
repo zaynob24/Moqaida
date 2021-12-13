@@ -6,8 +6,13 @@
     tools:context=".views.main.ProfileFragment">
 
     <TextView
+        android:id="@+id/loginProfileTV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/profile" />
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/Login"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
 
 </FrameLayout>

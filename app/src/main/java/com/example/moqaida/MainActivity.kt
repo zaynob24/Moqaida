@@ -14,6 +14,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.moqaida.databinding.ActivityMainBinding
+import com.example.moqaida.repositories.FirebaseServiceRepository
 import com.example.moqaida.views.MainActivity2
 import com.example.moqaida.views.idintity.LoginFragment
 import com.example.moqaida.views.main.AddItemFragment
@@ -31,6 +32,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        FirebaseServiceRepository.init() // init for the Repository then we use it any where
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

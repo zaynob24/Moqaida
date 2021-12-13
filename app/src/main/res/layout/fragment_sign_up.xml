@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".views.idintity.SignUpFragment">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -33,7 +33,6 @@
             android:text="@string/welcome_SignUp_massage" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/descrptionUpdate"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,13 +41,16 @@
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fullNameSignUpTV"
+                android:maxLines="1"
+                android:lines="1"
+                android:singleLine="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phoneSignUpTextField"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,13 +59,16 @@
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phoneSignUpTV"
+                android:maxLines="1"
+                android:lines="1"
+                android:singleLine="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailSignUpTextField"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,6 +77,10 @@
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailSignUpTV"
+                android:maxLines="1"
+                android:lines="1"
+                android:singleLine="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -87,6 +96,7 @@
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordSignUpTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword" />
@@ -94,7 +104,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/confirmPasswordSignUp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -103,6 +112,7 @@
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/confirmPasswordSignUpTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword" />
@@ -111,7 +121,7 @@
 
 
         <Button
-            android:id="@+id/signUp_button"
+            android:id="@+id/signUpButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"

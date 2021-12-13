@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".views.idintity.LoginFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -46,7 +46,11 @@
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailLoginTV"
                 android:layout_width="match_parent"
+                android:maxLines="1"
+                android:lines="1"
+                android:singleLine="true"
                 android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -61,6 +65,7 @@
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordLoginTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword" />
@@ -75,7 +80,7 @@
             android:text="@string/forget_password" />
 
         <Button
-            android:id="@+id/login_button"
+            android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
@@ -99,7 +104,7 @@
                 android:text="@string/no_account_massage" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/signupTextView"
                 style="@style/lightedTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
