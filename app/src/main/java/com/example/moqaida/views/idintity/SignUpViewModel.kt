@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 
 
 private const val TAG = "SignUpViewModel"
-private const val USER_COLLECTION= "users"
 
 class SignUpViewModel:ViewModel() {
     private val firestore = FirebaseServiceRepository.get()
@@ -44,6 +43,8 @@ class SignUpViewModel:ViewModel() {
                     if (task.isSuccessful) {
                         signUpLiveData.postValue("Success")
                         Log.d(TAG, "SignUp success: $response")
+                        Log.d(TAG, "SignUp success: $response"+response.result.toString()+task.result.toString()+task)
+
                     } else {
                         Log.d(TAG, "Fail SignUp")
                         signUpErrorLiveData.postValue(response.exception!!.message)

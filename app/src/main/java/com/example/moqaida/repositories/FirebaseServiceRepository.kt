@@ -6,11 +6,13 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 
 private const val USER_COLLECTION= "users"
+const val SHARED_PREF_FILE = "Auth"
+const val USER_ID = "userId"
 
 class FirebaseServiceRepository {
 
     private val db = FirebaseFirestore.getInstance()
-    private val  firebaseAuth = FirebaseAuth.getInstance()
+     val  firebaseAuth = FirebaseAuth.getInstance()
 
     // Collections
     private val userCollection = db.collection(USER_COLLECTION)

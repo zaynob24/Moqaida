@@ -1,6 +1,8 @@
 package com.example.moqaida.views.idintity
 
 import android.app.ProgressDialog
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +14,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.moqaida.R
 import com.example.moqaida.databinding.FragmentLoginBinding
+import com.example.moqaida.repositories.SHARED_PREF_FILE
+import com.example.moqaida.repositories.USER_ID
 
 
 private const val TAG = "LoginFragment"
@@ -21,6 +25,8 @@ class LoginFragment : Fragment() {
     private val loginViewModel: LoginViewModel by activityViewModels()
     private lateinit var progressDialog: ProgressDialog
 
+    private lateinit var sharedPref : SharedPreferences
+    private lateinit var sharedPrefEditor: SharedPreferences.Editor
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +37,10 @@ class LoginFragment : Fragment() {
             it.setTitle("Loading...")
             it.setCancelable(false)
         }
+
+        // To store user id
+        sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
+        sharedPrefEditor = sharedPref.edit()
 
         binding= FragmentLoginBinding.inflate(inflater,container,false)
         return binding.root
@@ -47,8 +57,8 @@ class LoginFragment : Fragment() {
 
 
         binding.loginButton.setOnClickListener {
-            val email:String= binding.emailLoginTV.text.toString()
-            val password:String= binding.passwordLoginTV.text.toString()
+            val email:String= binding.emailLoginTV.text.toString().trim()
+            val password:String= binding.passwordLoginTV.text.toString().trim()
 
             if(email.isNotEmpty()&& password.isNotEmpty()){
 
@@ -65,6 +75,9 @@ class LoginFragment : Fragment() {
             it?.let {
                 progressDialog.dismiss()
                 Toast.makeText(requireActivity(), R.string.user_logged_in_successfully, Toast.LENGTH_SHORT).show()
+
+                sharedPrefEditor.putString(USER_ID,it)
+                sharedPrefEditor.commit()
 
                 findNavController().popBackStack()
                 loginViewModel.loginLiveData.postValue(null)

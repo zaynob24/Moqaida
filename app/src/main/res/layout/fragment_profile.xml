@@ -15,4 +15,19 @@
         android:textColor="@color/black"
         android:textSize="24sp" />
 
+    <TextView
+        android:id="@+id/textprofile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:text="TextView"
+        android:textSize="34sp" />
+
+    <Button
+        android:id="@+id/buttonprofile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="100dp"
+        android:text="Button" />
+
 </FrameLayout>

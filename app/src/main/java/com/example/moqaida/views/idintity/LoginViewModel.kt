@@ -4,12 +4,11 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moqaida.model.Users
 import com.example.moqaida.repositories.FirebaseServiceRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-private const val TAG = "SignUpViewModel"
+private const val TAG = "LoginViewModel"
 class LoginViewModel : ViewModel() {
 
     private val firestore = FirebaseServiceRepository.get()
@@ -23,9 +22,16 @@ class LoginViewModel : ViewModel() {
             try {
                 val response = firestore.login(email, password)
 
-                response.addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        loginLiveData.postValue("Login is success")
+                response.addOnCompleteListener {task->
+                    if (task.isSuccessful) {
+                        // post user id to use it in sharedPref
+                        loginLiveData.postValue(firestore.firebaseAuth.currentUser!!.uid)
+
+                        Log.d(TAG, "SignUp success: $response")
+
+                    }else{
+                        Log.d(TAG, task.exception!!.message.toString())
+                        loginErrorLiveData.postValue(task.exception!!.message)
                     }
                 }
             } catch (e: Exception) {

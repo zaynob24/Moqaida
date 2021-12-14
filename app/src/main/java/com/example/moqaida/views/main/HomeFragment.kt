@@ -1,10 +1,8 @@
 package com.example.moqaida.views.main
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.example.moqaida.R
 
 
@@ -19,4 +17,7 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        // link menu with action bar
+        requireActivity().menuInflater.inflate(R.menu.main_menu,menu)    }
 }
