@@ -1,8 +1,11 @@
 package com.example.moqaida.repositories
 
+import android.net.Uri
 import com.example.moqaida.model.Users
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 
 private const val USER_COLLECTION= "users"
@@ -13,6 +16,8 @@ class FirebaseServiceRepository {
 
     private val db = FirebaseFirestore.getInstance()
      val  firebaseAuth = FirebaseAuth.getInstance()
+    val imageRef = Firebase.storage.reference
+
 
     // Collections
     private val userCollection = db.collection(USER_COLLECTION)
@@ -23,6 +28,9 @@ class FirebaseServiceRepository {
 
     // Insert a user into users collection
     fun insertUser(userId: String, user: Users) =userCollection.document(userId).set(user)
+
+    // upload Item Image to fire store
+    fun uploadItemImage(imageUri: Uri,filename:String)= imageRef.child("images/$filename").putFile(imageUri)
 
    // Login
     fun login(email: String, password: String)= firebaseAuth.signInWithEmailAndPassword(email,password)

@@ -8,6 +8,7 @@
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/drawable/add_item_icon.xml" value="0.23425925925925925" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/drawable/bartering_button.xml" value="0.23425925925925925" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/drawable/boarder.xml" value="0.23425925925925925" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/drawable/image_icon.xml" value="0.26615384615384613" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/drawable/profile_icon.xml" value="0.23425925925925925" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/drawable/request_notifi_icon.xml" value="0.23425925925925925" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/drawable/whatsapp_icon.xml" value="0.23425925925925925" />
@@ -17,7 +18,7 @@
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/all_item_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/bartering_dialog_layout.xml" value="0.2" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/contact_dialog_layout.xml" value="0.23854166666666668" />
-        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_add_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_add_item.xml" value="0.4" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_bartering_request.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_item_details.xml" value="0.25416666666666665" />

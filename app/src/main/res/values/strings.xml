@@ -52,14 +52,15 @@
 
 
     <!--  Add item -->
-    <string name="upload_photo">Upload Photo</string>
+    <string name="upload_photo">Upload</string>
     <string name="Years_of_use">Years of use</string>
     <string name="location">Location</string>
     <string name="short_description">Short Description</string>
     <string name="save">save</string>
     <string name="item_name">Item Name</string>
     <string name="item_name_example">example: phone</string>
-
+    <string name="image_upload_successfully">"Image upload successfully"</string>
+    <string name="no_image_massage">"No image to upload!!"</string>
 
     <!--  update item -->
     <string name="change_photo">Change Photo</string>

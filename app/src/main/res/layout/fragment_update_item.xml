@@ -97,7 +97,7 @@
 
 
     <TextView
-        android:id="@+id/changeImageUpdate"
+        android:id="@+id/UploadImageTextView"
         style="@style/TextAppearance.MaterialComponents.Subtitle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+        app:layout_constraintTop_toBottomOf="@+id/addItemImageView" />
 
     <TextView
         android:id="@+id/textView8"
@@ -117,7 +117,7 @@
         android:layout_marginTop="32dp"
         android:text="@string/item_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changeImageUpdate" />
+        app:layout_constraintTop_toBottomOf="@+id/UploadImageTextView" />
 
     <EditText
         android:id="@+id/itemNameUpdate"
@@ -133,10 +133,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/changeImageUpdate" />
+        app:layout_constraintTop_toBottomOf="@+id/UploadImageTextView" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/addItemImageView"
         android:layout_width="0dp"
         android:layout_height="133dp"
         android:layout_marginStart="32dp"
