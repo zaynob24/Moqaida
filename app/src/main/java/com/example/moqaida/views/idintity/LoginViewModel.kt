@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 private const val TAG = "LoginViewModel"
 class LoginViewModel : ViewModel() {
 
-    private val firestore = FirebaseServiceRepository.get()
+    private val firebaseRepo = FirebaseServiceRepository.get()
 
     val loginLiveData = MutableLiveData<String>()
     val loginErrorLiveData = MutableLiveData<String>()
@@ -20,12 +20,12 @@ class LoginViewModel : ViewModel() {
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = firestore.login(email, password)
+                val response = firebaseRepo.login(email, password)
 
                 response.addOnCompleteListener {task->
                     if (task.isSuccessful) {
                         // post user id to use it in sharedPref
-                        loginLiveData.postValue(firestore.firebaseAuth.currentUser!!.uid)
+                        loginLiveData.postValue(firebaseRepo.firebaseAuth.currentUser!!.uid)
 
                         Log.d(TAG, "SignUp success: $response")
 

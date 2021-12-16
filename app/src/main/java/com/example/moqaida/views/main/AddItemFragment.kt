@@ -3,6 +3,7 @@ package com.example.moqaida.views.main
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -21,6 +22,9 @@ import androidx.fragment.app.activityViewModels
 import com.example.moqaida.MainActivity
 import com.example.moqaida.R
 import com.example.moqaida.databinding.FragmentAddItemBinding
+import com.example.moqaida.model.Items
+import com.example.moqaida.repositories.SHARED_PREF_FILE
+import com.example.moqaida.repositories.USER_ID
 import com.example.moqaida.util.Permissions
 import com.example.moqaida.views.dialogs.ImageDialogFragment
 import com.google.firebase.ktx.Firebase
@@ -29,11 +33,12 @@ import kotlinx.coroutines.tasks.await
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.internal.entity.CaptureStrategy
+import com.zhihu.matisse.internal.entity.Item
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlin.math.log
+
 
 //uploadImageToStorage && Downloading Files - Firebase Cloud Storage
 //https://github.com/philipplackner/FirebaseStorage/blob/Downloading-Files/app/src/main/java/com/androiddevs/firebasestorage/MainActivity.kt
@@ -41,9 +46,10 @@ import kotlin.math.log
 private const val TAG = "AddItemFragment"
 class AddItemFragment : Fragment() {
 
+    private lateinit var USERID :String
     val imageRef = Firebase.storage.reference
     private var imageUri: Uri? = null
-    private var fileName = ""
+    private var imageFileName = ""
 
     private val IMAGE_PICKER = 0
     private lateinit var binding: FragmentAddItemBinding
@@ -53,7 +59,7 @@ class AddItemFragment : Fragment() {
 
     private lateinit var  name: String
     private lateinit var  location: String
-    private lateinit var  usedFore: String
+    private lateinit var  yearsOfUse: String
     private lateinit var  purchasedPrice: String
     private lateinit var  estimatedPrice: String
     private lateinit var  description: String
@@ -83,20 +89,28 @@ class AddItemFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+           // to fill usedFor and Location menu with list of options
+        fillMenuList()
+
            // to make editText accept number only (for price)
         binding.purchasedPriceAddItem.inputType = InputType.TYPE_CLASS_NUMBER
         binding.estimatedPriceAddItem.inputType = InputType.TYPE_CLASS_NUMBER
 
+        //-----------------------------------------------------------------//
+
+        // get userId
+        val sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
+        USERID = sharedPref.getString(USER_ID,"").toString()
+
+        //-----------------------------------------------------------------//
 
         //  show image picker for user to chose item image
         binding.UploadImageTextView.setOnClickListener {
+
             Permissions.checkPermission(requireContext(), requireActivity())
-            showImagePicker()
+            showImagePicker()     // this function showing ImagePicker using Matisse library then give imageUri of chosen image
         }
 
-
-        // to fill usedFor and Location menu with list of options
-        fillMenuList()
 
         //-----------------------------------------------------------------//
 
@@ -107,18 +121,19 @@ class AddItemFragment : Fragment() {
 
              if (checkEntryData()){ // to check if all field contain data and give error massage if not
 
-                 //TODO : save data to fire base
+                imageUri?.let {
+                progressDialog.show()
+                // pass time in millis to use it as filename of the image
+                // to be sure it is unique in firestorge(Duplicated name with replace the old image instead of add new one!)
+                addItemViewModel.uploadItemImage(it, System.currentTimeMillis().toString())
+            }?:Toast.makeText(requireContext(),R.string.no_image_massage, Toast.LENGTH_LONG).show()
+
              }else{
                  Toast.makeText(requireContext(),getText(R.string.fill_required), Toast.LENGTH_SHORT).show()
              }
 
 
-//            imageUri?.let {
-//                progressDialog.show()
-//                // I pass time in millis to use it as filename of the image
-//                // so I be sure it is unique in firestorge(Duplicated name with replace the old image instead of add new one!)
-//                addItemViewModel.uploadItemImage(it, System.currentTimeMillis().toString())
-//            }?:Toast.makeText(requireContext(),R.string.no_image_massage, Toast.LENGTH_LONG).show()
+
 
         }
         //-----------------------------------------------------------------//
@@ -136,11 +151,13 @@ class AddItemFragment : Fragment() {
             }
         }
 
-//        binding.saveAddItemButton.setOnClickListener {
-//            downloadImage(fileName)
-//        }
+        //-----------------------------------------------------------------//
 
         observer()
+
+        //        binding.saveAddItemButton.setOnClickListener {
+//            downloadImage(fileName)
+//        }
 
     }
 
@@ -156,7 +173,7 @@ class AddItemFragment : Fragment() {
         val usedForAdapter = ArrayAdapter(requireContext(), R.layout.list_item, usedForItems)
         (binding.usedForMenuAddItem.editText as? AutoCompleteTextView)?.setAdapter(usedForAdapter)
 
-
+        // fill location menu with list of countries from array string
         val locationItems = resources.getStringArray(R.array.countries_array).toList()
         val locationAdapter = ArrayAdapter(requireContext(), R.layout.list_item, locationItems)
         (binding.locationMenuAddItem.editText as? AutoCompleteTextView)?.setAdapter(locationAdapter)
@@ -167,13 +184,13 @@ class AddItemFragment : Fragment() {
     private fun takeEntryData() {
          name = binding.itemNameAddItem.text.toString().trim()
          location = binding.locationMenuEditeTextAddItem.text.toString().trim()
-         usedFore = binding.usedForMEditeTextenuAddItem.text.toString().trim()
+         yearsOfUse = binding.usedForMEditeTextenuAddItem.text.toString().trim()
          purchasedPrice = binding.purchasedPriceAddItem.text.toString().trim()
          estimatedPrice  = binding.estimatedPriceAddItem.text.toString().trim()
          description = binding.descriptionAddItem.text.toString().trim()
          imageNameVisibility = binding.imageNameTextView.visibility
 
-        Log.d(TAG,"name: $name , location: $location ,usedFore: $usedFore, purchasedPrice: $purchasedPrice," +
+        Log.d(TAG,"name: $name , location: $location ,usedFore: $yearsOfUse, purchasedPrice: $purchasedPrice," +
                 "estimatedPrice: $estimatedPrice,description: $description imageNameVisibility: $imageNameVisibility")
     }
 
@@ -207,7 +224,7 @@ class AddItemFragment : Fragment() {
         }
 
         //check usedFore
-        if (usedFore.isEmpty()|| usedFore.isBlank()){
+        if (yearsOfUse.isEmpty()|| yearsOfUse.isBlank()){
             binding.usedForMenuAddItem.error = getString(R.string.required)
             isAllDataFilled = false
         }else{
@@ -249,13 +266,15 @@ class AddItemFragment : Fragment() {
 
         if (requestCode == IMAGE_PICKER && resultCode == Activity.RESULT_OK) {
 
-             //my code
+             //using Matisse library to take uri of chosen image
             imageUri = Matisse.obtainResult(data)[0] //[0] index 0 to take first index of the array of photo selected
 
             binding.imageRequiredText.visibility = View.INVISIBLE
             binding.imageNameTextView.visibility = View.VISIBLE
 
- //            val imagePath = Matisse.obtainPathResult(data)[0] //[0] index 0 to take first index of the array of photo selected
+            //TODO erase this code if no need or use it (for camera)
+
+  //            val imagePath = Matisse.obtainPathResult(data)[0] //[0] index 0 to take first index of the array of photo selected
 //            val imageFile = File(imagePath)
 //            binding.addItemImageView.setImageURI(imageUri)
         }
@@ -294,20 +313,17 @@ class AddItemFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun observer() {
-        // after uploading item image finish
+        // after uploading item image to fireStorage finish
+        // image upload successfully
         addItemViewModel.uploadImageLiveData.observe(viewLifecycleOwner, {
             it?.let {
-                progressDialog.dismiss()  // To close the progress Dialog after uploading image
-                Toast.makeText(
-                    requireActivity(),
-                    R.string.image_upload_successfully,
-                    Toast.LENGTH_SHORT
-                ).show()
 
-                fileName = it
+                imageFileName = it //name of image in fireStorage (the name is: currentTimeMillis)
                 addItemViewModel.uploadImageLiveData.postValue(null)
 
-                saveItem()
+                // save item details (name,image,price and so on )to fireStore
+                addItemViewModel.uploadItemInfo(Items(name,location,yearsOfUse,purchasedPrice,estimatedPrice,description,imageFileName,USERID))
+
             }
         })
 
@@ -318,12 +334,31 @@ class AddItemFragment : Fragment() {
                 addItemViewModel.uploadImageErrorLiveData.postValue(null)
             }
         })
-    }
-    //--------------------------------------------------------------------------------------------------------------//
+        //-----------------------------------------------------------------------------------//
 
-    private fun saveItem() {
+        // after uploading item to fireStore finish
+        //  upload successfully
+        addItemViewModel.uploadItemLiveData.observe(viewLifecycleOwner,{
+            it?.let {
+
+                 progressDialog.dismiss()  // To close the progress Dialog after uploading image
+                 Toast.makeText(requireActivity(), R.string.item_upload_successfully, Toast.LENGTH_SHORT).show()
+                addItemViewModel.uploadItemLiveData.postValue(null)
+            }
+        })
+
+
+        addItemViewModel.uploadItemErrorLiveData.observe(viewLifecycleOwner, {
+            it?.let {
+                progressDialog.dismiss()
+                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+                addItemViewModel.uploadItemErrorLiveData.postValue(null)
+            }
+        })
 
     }
+
+
     //--------------------------------------------------------------------------------------------------------------//
 
 }

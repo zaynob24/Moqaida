@@ -1,6 +1,6 @@
 package com.example.moqaida.model
 
-class Users (
+data class Users (
 
     val fullName:String = "" ,
     val email: String = "",

@@ -38,8 +38,8 @@ class ProfileFragment : Fragment() {
 
 
              val sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE,Context.MODE_PRIVATE)
-
             binding.textprofile.text = sharedPref.getString(USER_ID,"")
+
         }
 
     }

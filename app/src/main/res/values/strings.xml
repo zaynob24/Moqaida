@@ -3,71 +3,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-
-    <!--    SignUp and Login -->
-    <string name="hello">Hello</string>
-    <string name="hello_login_massage">Let’s get new items by bartering !</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="confirm_password">Confirm Password</string>
-    <string name="forget_password">Forget Password?</string>
-    <string name="Login">Login</string>
-    <string name="SignUp">Sign Up</string>
-    <string name="no_account_massage">Don’t Have Account?</string>
-    <string name="welcome">Welcome</string>
-    <string name="welcome_SignUp_massage">Join us in Moqaida and get new items by
-    bartering!</string>
-    <string name="full_name">Full Name</string>
-    <string name="phone_number">Phone Number</string>
-    <string name="have_account_massage">Already Have Account?</string>
-
-    <string name="user_registers_successfully">User Registers Successfully</string>
-    <string name="user_logged_in_successfully">User Logged in Successfully</string>
-
-
-    <!--  bartering-popup -->
-    <string name="want_to_bartered">want to bartered !</string>
-    <string name="Your_item_name">Your item name</string>
-    <string name="describe_your_item">Describe your item here ...</string>
-    description
-
-    <!--  details - items -->
-    <string name="used_for">Used for:</string>
-    <string name="purchased_price">$ Purchased Price</string>
-    <string name="estimated_price">$ Estimated Price</string>
-    <string name="description">Description</string>
-
-
-    <!--  side Menu -->
-    <string name="profile">Profile</string>
-    <string name="add_items">Add items</string>
-    <string name="my_items">My items</string>
-    <string name="bartering_request">Bartering Request</string>
-    <string name="Logout">Logout</string>
-
-
-    <!--  Profile -->
-    <string name="name">Name</string>
-    <string name="phone">Phone</string>
-
-
-    <!--  Add item -->
-    <string name="upload_photo">Upload image</string>
-    <string name="Years_of_use">Years of use</string>
-    <string name="location">Location</string>
-    <string name="short_description">Short Description</string>
-    <string name="save">save</string>
-    <string name="item_name">Item Name</string>
-    <string name="item_name_example">example: phone</string>
-    <string name="image_upload_successfully">"Image upload successfully"</string>
-    <string name="no_image_massage">"No image to upload!!"</string>
-    <string name="my_image">My image</string>
-    <!-- UsedFor menu -->
-    <string name="used_for_option1">1 month or less</string>
-    <string name="used_for_option2">1 year or less</string>
-    <string name="used_for_option3">2 to 3 years</string>
-    <string name="used_for_option4">4 to 5 years</string>
-    <string name="used_for_option5">mor than 5 years</string>
     <!--Location menu -->
     <string-array name="countries_array">
         <item>Other country</item>
@@ -307,6 +242,73 @@
         <item>Zimbabwe</item>
     </string-array>
 
+
+    <!--    SignUp and Login -->
+    <string name="hello">Hello</string>
+    <string name="hello_login_massage">Let’s get new items by bartering !</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="Login">Login</string>
+    <string name="SignUp">Sign Up</string>
+    <string name="no_account_massage">Don’t Have Account?</string>
+    <string name="welcome">Welcome</string>
+    <string name="welcome_SignUp_massage">Join us in Moqaida and get new items by
+    bartering!</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="have_account_massage">Already Have Account?</string>
+
+    <string name="user_registers_successfully">User Registers Successfully</string>
+    <string name="user_logged_in_successfully">User Logged in Successfully</string>
+
+
+    <!--  bartering-popup -->
+    <string name="want_to_bartered">want to bartered !</string>
+    <string name="Your_item_name">Your item name</string>
+    <string name="describe_your_item">Describe your item here ...</string>
+    description
+
+    <!--  details - items -->
+    <string name="used_for">Used for:</string>
+    <string name="purchased_price">$ Purchased Price</string>
+    <string name="estimated_price">$ Estimated Price</string>
+    <string name="description">Description</string>
+
+
+    <!--  side Menu -->
+    <string name="profile">Profile</string>
+    <string name="add_items">Add items</string>
+    <string name="my_items">My items</string>
+    <string name="bartering_request">Bartering Request</string>
+    <string name="Logout">Logout</string>
+
+
+    <!--  Profile -->
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+
+
+    <!--  Add item -->
+    <string name="upload_photo">Upload image</string>
+    <string name="Years_of_use">Years of use</string>
+    <string name="location">Location</string>
+    <string name="short_description">Short Description</string>
+    <string name="save">save</string>
+    <string name="item_name">Item Name</string>
+    <string name="item_name_example">example: phone</string>
+    <string name="image_upload_successfully">"Image upload successfully"</string>
+    <string name="item_upload_successfully">"Item upload successfully"</string>
+
+    <string name="no_image_massage">"No image to upload!!"</string>
+    <string name="my_image">My image</string>
+    <!-- UsedFor menu -->
+    <string name="used_for_option1">1 month or less</string>
+    <string name="used_for_option2">1 year or less</string>
+    <string name="used_for_option3">2 to 3 years</string>
+    <string name="used_for_option4">4 to 5 years</string>
+    <string name="used_for_option5">mor than 5 years</string>
 
 
     <!--  update item -->

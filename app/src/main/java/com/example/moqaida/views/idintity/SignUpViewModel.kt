@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 private const val TAG = "SignUpViewModel"
 
 class SignUpViewModel:ViewModel() {
-    private val firestore = FirebaseServiceRepository.get()
+    private val firebaseRepo = FirebaseServiceRepository.get()
 
     val signUpLiveData = MutableLiveData<String>()
     val signUpErrorLiveData = MutableLiveData<String>()
@@ -21,12 +21,12 @@ class SignUpViewModel:ViewModel() {
     fun signUp(user: Users, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = firestore.signUp(user.email, password)
+                val response = firebaseRepo.signUp(user.email, password)
 
                 response.addOnCompleteListener {
                     if (it.isSuccessful) {
-                        val firestoreUser = it.result!!.user!!
-                        insertUser(firestoreUser.uid, user)
+                        val fireStoreUser = it.result!!.user!!
+                        insertUser(fireStoreUser.uid, user)
                     }
                 }
             } catch (e: Exception) {
@@ -35,10 +35,10 @@ class SignUpViewModel:ViewModel() {
             }
         }
     }
-    fun insertUser(userId: String, user: Users) {
+    private fun insertUser(userId: String, user: Users) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = firestore.insertUser(userId, user)
+                val response = firebaseRepo.insertUser(userId, user)
                 response.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         signUpLiveData.postValue("Success")
