@@ -10,26 +10,54 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/usedForMenuUpdate"
+        android:id="@+id/itemNameAddItemfiled"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:hint="@string/item_name"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/itemNameAddItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/usedForMenuAddItem"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
         android:hint="@string/used_for"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemNameUpdate">
+        app:layout_constraintTop_toBottomOf="@+id/UploadImageTextView">
 
         <AutoCompleteTextView
+            android:id="@+id/usedForMEditeTextenuAddItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/locationMenuUpdate"
+        android:id="@+id/locationMenuAddItem"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
@@ -39,10 +67,11 @@
         android:hint="@string/location"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/usedForMenuUpdate"
-        app:layout_constraintTop_toBottomOf="@+id/itemNameUpdate">
+        app:layout_constraintStart_toEndOf="@+id/usedForMenuAddItem"
+        app:layout_constraintTop_toBottomOf="@+id/UploadImageTextView">
 
         <AutoCompleteTextView
+            android:id="@+id/locationMenuEditeTextAddItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none"
@@ -51,29 +80,33 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/purchasedPriceUpdate"
+        android:id="@+id/purchasedPriceAddItemFiled"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:hint="@string/purchased_price"
-        app:endIconMode="clear_text"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationMenuUpdate">
+        app:layout_constraintTop_toBottomOf="@+id/locationMenuAddItem">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/purchasedPriceAddItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true"
             android:textSize="12sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/estimatedPriceUpdate"
+        android:id="@+id/estimatedPriceAddItemFiled"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
@@ -81,80 +114,46 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
         android:hint="@string/estimated_price"
-        app:endIconMode="clear_text"
-        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/purchasedPriceUpdate"
-        app:layout_constraintTop_toBottomOf="@+id/locationMenuUpdate">
+        app:layout_constraintStart_toEndOf="@+id/purchasedPriceAddItemFiled"
+        app:layout_constraintTop_toBottomOf="@+id/locationMenuAddItem">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/estimatedPriceAddItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
+            android:lines="1"
+            app:errorEnabled="true"
+            android:maxLines="1"
+            android:singleLine="true"
             android:textSize="12sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/UploadImageTextView"
-        style="@style/TextAppearance.MaterialComponents.Headline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/upload_photo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.50"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageNameTextView" />
-
-
-    <TextView
-        android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/item_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UploadImageTextView" />
-
-    <EditText
-        android:id="@+id/itemNameUpdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="@string/item_name_example"
-        android:inputType="textPersonName"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/boarder"
+        android:text="@string/upload_photo"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/UploadImageTextView" />
-
-    <ImageView
-        android:id="@+id/addItemImageView"
-        android:layout_width="0dp"
-        android:layout_height="140dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/image_icon"
-        app:tint="@color/colorSecondaryVariant" />
+        app:layout_constraintTop_toBottomOf="@+id/itemNameAddItemfiled" />
+
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
         android:text="@string/short_description"
         android:textSize="16sp"
@@ -162,23 +161,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/purchasedPriceUpdate" />
+        app:layout_constraintTop_toBottomOf="@+id/purchasedPriceAddItemFiled" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/descrptionUpdate"
+        android:id="@+id/descriptionAddItemFiled"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
         android:hint="@string/describe_your_item"
         app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/saveAddItemButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9">
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintVertical_bias="0.0">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/descriptionAddItem"
             android:layout_width="match_parent"
             android:layout_height="110dp"
             android:gravity="start" />
@@ -195,32 +198,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/imagetest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="300dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addItemImageView"
-        tools:src="@tools:sample/avatars" />
-
     <TextView
         android:id="@+id/imageNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="16dp"
-        android:textColor="@color/colorSecondaryVariant"
-        android:textColorLink="@color/colorSecondary"
-        android:textSize="8sp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/my_image"
+        android:textColor="@color/colorSecondary"
+        android:textSize="14sp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.50"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addItemImageView" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/UploadImageTextView"
+        app:layout_constraintTop_toBottomOf="@+id/itemNameAddItemfiled" />
+
+    <TextView
+        android:id="@+id/imageRequiredText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/required"
+        android:textColor="?attr/colorError"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/UploadImageTextView"
+        app:layout_constraintTop_toBottomOf="@+id/itemNameAddItemfiled" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

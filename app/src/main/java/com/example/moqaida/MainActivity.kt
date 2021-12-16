@@ -54,12 +54,6 @@ class MainActivity : AppCompatActivity() {
 //            finish()
 //        }
 
-//        //requireContext()
-//        val items = listOf("Option 1", "Option 2", "Option 3", "Option 4")
-//        val adapter = ArrayAdapter(this, R.layout.list_item_years, items)
-//        (binding.usedForMenu.editText as? AutoCompleteTextView)?.setAdapter(adapter)
-//        (binding.locationMenu.editText as? AutoCompleteTextView)?.setAdapter(adapter)
-
 
     }
 

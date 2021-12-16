@@ -10,7 +10,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/usedForMenuUpdate"
+        android:id="@+id/usedForMenuAddItem"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         android:layout_marginTop="32dp"
         android:hint="@string/used_for"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemNameUpdate">
+        app:layout_constraintTop_toBottomOf="@+id/itemNameAddItemfiled">
 
         <AutoCompleteTextView
             android:layout_width="match_parent"
@@ -29,7 +29,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/locationMenuUpdate"
+        android:id="@+id/locationMenuAddItem"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
@@ -39,8 +39,8 @@
         android:hint="@string/location"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/usedForMenuUpdate"
-        app:layout_constraintTop_toBottomOf="@+id/itemNameUpdate">
+        app:layout_constraintStart_toEndOf="@+id/usedForMenuAddItem"
+        app:layout_constraintTop_toBottomOf="@+id/itemNameAddItemfiled">
 
         <AutoCompleteTextView
             android:layout_width="match_parent"
@@ -51,7 +51,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/purchasedPriceUpdate"
+        android:id="@+id/purchasedPriceAddItemFiled"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationMenuUpdate">
+        app:layout_constraintTop_toBottomOf="@+id/locationMenuAddItem">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -73,7 +73,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/estimatedPriceUpdate"
+        android:id="@+id/estimatedPriceAddItemFiled"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
@@ -85,8 +85,8 @@
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/purchasedPriceUpdate"
-        app:layout_constraintTop_toBottomOf="@+id/locationMenuUpdate">
+        app:layout_constraintStart_toEndOf="@+id/purchasedPriceAddItemFiled"
+        app:layout_constraintTop_toBottomOf="@+id/locationMenuAddItem">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -120,7 +120,7 @@
         app:layout_constraintTop_toBottomOf="@+id/UploadImageTextView" />
 
     <EditText
-        android:id="@+id/itemNameUpdate"
+        android:id="@+id/itemNameAddItemfiled"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -159,10 +159,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/purchasedPriceUpdate" />
+        app:layout_constraintTop_toBottomOf="@+id/purchasedPriceAddItemFiled" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/descrptionUpdate"
+        android:id="@+id/descriptionAddItemFiled"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
