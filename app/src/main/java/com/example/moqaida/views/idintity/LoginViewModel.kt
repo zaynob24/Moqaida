@@ -25,9 +25,10 @@ class LoginViewModel : ViewModel() {
                 response.addOnCompleteListener {task->
                     if (task.isSuccessful) {
                         // post user id to use it in sharedPref
-                        loginLiveData.postValue(firebaseRepo.firebaseAuth.currentUser!!.uid)
+//                        loginLiveData.postValue(firebaseRepo.firebaseAuth.currentUser!!.uid)
+                        loginLiveData.postValue("Login success")
 
-                        Log.d(TAG, "SignUp success: $response")
+                        Log.d(TAG, "Login success: $response")
 
                     }else{
                         Log.d(TAG, task.exception!!.message.toString())

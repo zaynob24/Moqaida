@@ -26,6 +26,7 @@ import com.example.moqaida.views.main.MyItemFragment
 
 class MainActivity : AppCompatActivity() {
 
+
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         FirebaseServiceRepository.init() // init for the Repository then we use it any where
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -54,8 +56,8 @@ class MainActivity : AppCompatActivity() {
 //            finish()
 //        }
 
-
     }
+
 
     override fun onSupportNavigateUp(): Boolean {
         val  navController = findNavController(R.id.fragmentContainerView)

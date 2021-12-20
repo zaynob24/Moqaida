@@ -62,7 +62,6 @@ class AddItemViewModel : ViewModel() {
                     if (task.isSuccessful) {
                         // post filename to use it in upload item info
                         uploadImageLiveData.postValue(filename)
-
                         Log.d(TAG, "Image upload success: $response")
 
                     } else {

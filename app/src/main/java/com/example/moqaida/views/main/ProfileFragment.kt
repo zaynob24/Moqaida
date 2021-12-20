@@ -11,9 +11,12 @@ import com.example.moqaida.R
 import com.example.moqaida.databinding.FragmentProfileBinding
 import com.example.moqaida.repositories.SHARED_PREF_FILE
 import com.example.moqaida.repositories.USER_ID
+import com.google.firebase.auth.FirebaseAuth
 
 
 class ProfileFragment : Fragment() {
+
+    private lateinit var firebaseAuth: FirebaseAuth
 
     private lateinit var binding: FragmentProfileBinding
 
@@ -21,6 +24,8 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        firebaseAuth = FirebaseAuth.getInstance()
         // Inflate the layout for this fragment
         binding= FragmentProfileBinding.inflate(inflater,container,false)
         return binding.root
@@ -36,9 +41,9 @@ class ProfileFragment : Fragment() {
 
         binding.buttonprofile.setOnClickListener {
 
-
-             val sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE,Context.MODE_PRIVATE)
-            binding.textprofile.text = sharedPref.getString(USER_ID,"")
+            // val sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE,Context.MODE_PRIVATE)
+//            binding.textprofile.text = sharedPref.getString(USER_ID,"")
+            binding.textprofile.text = firebaseAuth.currentUser?.displayName
 
         }
 

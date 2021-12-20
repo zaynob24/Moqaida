@@ -14,8 +14,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.moqaida.R
 import com.example.moqaida.databinding.FragmentLoginBinding
+import com.example.moqaida.repositories.FirebaseServiceRepository
 import com.example.moqaida.repositories.SHARED_PREF_FILE
 import com.example.moqaida.repositories.USER_ID
+import com.google.firebase.auth.FirebaseAuth
 
 
 private const val TAG = "LoginFragment"
@@ -25,13 +27,14 @@ class LoginFragment : Fragment() {
     private val loginViewModel: LoginViewModel by activityViewModels()
     private lateinit var progressDialog: ProgressDialog
 
-    private lateinit var sharedPref : SharedPreferences
-    private lateinit var sharedPrefEditor: SharedPreferences.Editor
+//    private lateinit var sharedPref : SharedPreferences
+//    private lateinit var sharedPrefEditor: SharedPreferences.Editor
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    private lateinit var firebaseAuth: FirebaseAuth
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, avedInstanceState: Bundle?): View? {
+
+          firebaseAuth = FirebaseAuth.getInstance()
 
         progressDialog = ProgressDialog(requireActivity()).also {
             it.setTitle("Loading...")
@@ -39,8 +42,8 @@ class LoginFragment : Fragment() {
         }
 
         // To store user id
-        sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
-        sharedPrefEditor = sharedPref.edit()
+//        sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
+//        sharedPrefEditor = sharedPref.edit()
 
         binding= FragmentLoginBinding.inflate(inflater,container,false)
         return binding.root
@@ -68,7 +71,28 @@ class LoginFragment : Fragment() {
 
             }
         }
+
+
+        binding.logutbutton.setOnClickListener {
+            firebaseAuth.signOut()
+            checkLoggedInState()
+
+        }
     }
+
+    override fun onStart() {
+        super.onStart()
+        checkLoggedInState()
+    }
+
+    private fun checkLoggedInState() {
+
+        firebaseAuth.currentUser?.let {
+            binding.loginStatetextView.text = "You are logged in!"
+        }?:run { binding.loginStatetextView.text = "You are not logged in" }
+
+    }
+
 
     private fun observer() {
         loginViewModel.loginLiveData.observe(viewLifecycleOwner, {
@@ -76,11 +100,13 @@ class LoginFragment : Fragment() {
                 progressDialog.dismiss()
                 Toast.makeText(requireActivity(), R.string.user_logged_in_successfully, Toast.LENGTH_SHORT).show()
 
-                sharedPrefEditor.putString(USER_ID,it)
-                sharedPrefEditor.commit()
+//                sharedPrefEditor.putString(USER_ID,it)
+//                sharedPrefEditor.commit()
 
-                findNavController().popBackStack()
                 loginViewModel.loginLiveData.postValue(null)
+                checkLoggedInState()
+                findNavController().popBackStack()
+
             }
         })
 
