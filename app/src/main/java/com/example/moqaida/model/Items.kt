@@ -9,7 +9,7 @@ data class Items (
     val purchasedPrice: String = "",
     val estimatedPrice: String = "",
     val description: String = "",
-    val imageName: String = "",
+    val imageUrl: String = "",
     val userId: String = "",
 
     )

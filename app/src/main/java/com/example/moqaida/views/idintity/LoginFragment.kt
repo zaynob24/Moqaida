@@ -14,9 +14,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.moqaida.R
 import com.example.moqaida.databinding.FragmentLoginBinding
-import com.example.moqaida.repositories.FirebaseServiceRepository
-import com.example.moqaida.repositories.SHARED_PREF_FILE
-import com.example.moqaida.repositories.USER_ID
+import com.example.moqaida.repositories.*
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -27,8 +25,8 @@ class LoginFragment : Fragment() {
     private val loginViewModel: LoginViewModel by activityViewModels()
     private lateinit var progressDialog: ProgressDialog
 
-//    private lateinit var sharedPref : SharedPreferences
-//    private lateinit var sharedPrefEditor: SharedPreferences.Editor
+    private lateinit var sharedPref : SharedPreferences
+    private lateinit var sharedPrefEditor: SharedPreferences.Editor
 
     private lateinit var firebaseAuth: FirebaseAuth
 
@@ -41,9 +39,9 @@ class LoginFragment : Fragment() {
             it.setCancelable(false)
         }
 
-        // To store user id
-//        sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
-//        sharedPrefEditor = sharedPref.edit()
+        // To store user details
+        sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
+        sharedPrefEditor = sharedPref.edit()
 
         binding= FragmentLoginBinding.inflate(inflater,container,false)
         return binding.root
@@ -100,8 +98,13 @@ class LoginFragment : Fragment() {
                 progressDialog.dismiss()
                 Toast.makeText(requireActivity(), R.string.user_logged_in_successfully, Toast.LENGTH_SHORT).show()
 
-//                sharedPrefEditor.putString(USER_ID,it)
-//                sharedPrefEditor.commit()
+
+                // get User Info to store it in shared Pref
+                sharedPrefEditor.putString(USER_ID,it)
+                sharedPrefEditor.putString(USER_EMAIL,it)
+                sharedPrefEditor.putString(USER_PHONE,it)
+
+                sharedPrefEditor.commit()
 
                 loginViewModel.loginLiveData.postValue(null)
                 checkLoggedInState()

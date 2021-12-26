@@ -8,18 +8,22 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import com.example.moqaida.R
 import com.example.moqaida.databinding.AllItemLayoutBinding
 import com.example.moqaida.model.Items
+import com.example.moqaida.views.main.HomeViewModel
 import com.squareup.picasso.Picasso
 
 private const val TAG = "ItemsAdapter"
-class ItemsAdapter() :
+// context to use it with Glide , homeViewModel to use it for pass item selected
+class ItemsAdapter(val context: Context ,val homeViewModel: HomeViewModel) :
     RecyclerView.Adapter<ItemsAdapter.ItemsViewHolder>() {
-
 
 
 // the adapter will change all adapter item if we give it new data(delete old one then add new one) but
@@ -29,7 +33,7 @@ class ItemsAdapter() :
         override fun areItemsTheSame(oldItem: Items, newItem: Items): Boolean {
             Log.d(TAG,"areItemsTheSame")
 
-            return oldItem == newItem
+            return oldItem.imageUrl == newItem.imageUrl
         }
         override fun areContentsTheSame(oldItem: Items, newItem: Items): Boolean {
             return oldItem == newItem
@@ -61,7 +65,15 @@ class ItemsAdapter() :
 
         val item = differ.currentList[position]
 
+        holder.itemView.setOnClickListener {
+            homeViewModel.selectedItemsLiveData.postValue(item)
+            holder.itemView.findNavController().navigate(R.id.action_homeFragment_to_ItemDetailsFragment)
+
+
+        }
+
         holder.bind(item)
+
     }
 
     override fun getItemCount(): Int {
@@ -71,7 +83,7 @@ class ItemsAdapter() :
     }
 
 
-     class ItemsViewHolder(val binding: AllItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ItemsViewHolder(val binding: AllItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
 
         fun bind(item:Items){
@@ -79,12 +91,13 @@ class ItemsAdapter() :
             Log.d(TAG,item.itemName)
             binding.itemName.text = item.itemName
 
-            val url = "https://firebasestorage.googleapis.com/v0/b/moqaida-z.appspot.com/o/images%2F${item.imageName}?alt=media&token=c1cbbd99-21e8-4887-b309-2388412dea6f"
+            //val url = "https://firebasestorage.googleapis.com/v0/b/moqaida-z.appspot.com/o/images%2F1639688238968?alt=media&token=c1cbbd99-21e8-4887-b309-2388412dea6f"
+            Log.d(TAG,item.imageUrl)
 
-            Log.d(TAG,url)
-
-            Picasso.get().load(url).into(binding.itemImageView)
-
+            Glide
+                .with(context)
+                .load(item.imageUrl)
+                .into(binding.itemImageView)
 
         }
     }

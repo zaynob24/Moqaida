@@ -5,9 +5,18 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
     <fragment
+        android:id="@+id/ItemDetailsFragment"
+        android:name="com.example.moqaida.views.main.ItemDetailsFragment"
+        android:label="ItemDetailsFragment"
+        tools:layout="@layout/fragment_item_details" />
+    <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.moqaida.views.main.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_ItemDetailsFragment"
+            app:destination="@id/ItemDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.moqaida.views.idintity.LoginFragment"

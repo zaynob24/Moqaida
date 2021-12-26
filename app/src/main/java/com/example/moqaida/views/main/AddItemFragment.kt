@@ -133,8 +133,6 @@ class AddItemFragment : Fragment() {
              }
 
 
-
-
         }
         //-----------------------------------------------------------------//
 
@@ -319,10 +317,12 @@ class AddItemFragment : Fragment() {
             it?.let {
 
                 imageFileName = it //name of image in fireStorage (the name is: currentTimeMillis)
+                val imageUrl = "https://firebasestorage.googleapis.com/v0/b/moqaida-z.appspot.com/o/images%2F$imageFileName?alt=media&token=c1cbbd99-21e8-4887-b309-2388412dea6f"
+
                 addItemViewModel.uploadImageLiveData.postValue(null)
 
                 // save item details (name,image,price and so on )to fireStore
-                addItemViewModel.uploadItemInfo(Items(name,location,yearsOfUse,purchasedPrice,estimatedPrice,description,imageFileName,USERID))
+                addItemViewModel.uploadItemInfo(Items(name,location,yearsOfUse,purchasedPrice,estimatedPrice,description,imageUrl,USERID))
 
             }
         })

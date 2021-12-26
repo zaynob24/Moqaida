@@ -66,7 +66,7 @@ class HomeFragment : Fragment() {
 
 
         itemArrayList = arrayListOf()
-        itemRecyclerViewAdapter = ItemsAdapter()
+        itemRecyclerViewAdapter = ItemsAdapter(requireContext(),homeViewModel)
         binding.itemsrecyclerView.adapter = itemRecyclerViewAdapter
 
 

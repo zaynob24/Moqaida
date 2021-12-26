@@ -2,10 +2,10 @@ package com.example.moqaida.repositories
 
 import android.net.Uri
 import com.example.moqaida.model.Items
+import com.example.moqaida.model.Requests
 import com.example.moqaida.model.Users
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.tasks.await
@@ -14,7 +14,12 @@ import kotlinx.coroutines.tasks.await
 private const val USER= "users"
 const val SHARED_PREF_FILE = "Auth"
 const val USER_ID = "userId"
+const val USER_EMAIL = "userEmail"
+const val USER_PHONE = "userPhone"
+
 private const val ITEM = "items"
+private const val REQUESTS = "requests"
+
 
 class FirebaseServiceRepository {
 
@@ -27,6 +32,8 @@ class FirebaseServiceRepository {
     // Collections
     private val userCollection = db.collection(USER)
     private val itemInfoCollection = db.collection(ITEM)
+
+    private val requestCollection = db.collection(USER).document(firebaseAuth.currentUser!!.uid).collection(REQUESTS)
 
     //-------------------------------------------------------------------------------------------------------//
 
@@ -49,6 +56,9 @@ class FirebaseServiceRepository {
     // retrieve Items
     suspend fun  retrieveItems() =  itemInfoCollection.get().await()
 
+
+    // Insert Bartering Request into Request collection
+    fun sendBarteringRequest(request: Requests) = requestCollection.document().set(request)
 
     //-------------------------------------------------------------------------------------------------------//
 

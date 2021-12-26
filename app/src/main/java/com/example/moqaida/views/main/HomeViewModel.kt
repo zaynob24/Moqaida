@@ -20,11 +20,12 @@ class HomeViewModel : ViewModel() {
 
     val retrieveItemsLiveData = MutableLiveData<ArrayList<Items>>()
     val retrieveItemsErrorLiveData = MutableLiveData<String>()
-
-    private var itemArrayList: ArrayList<Items> = arrayListOf()
+    val selectedItemsLiveData = MutableLiveData<Items>()
 
 
     fun retrieveItems() {
+
+        val itemArrayList: ArrayList<Items> = arrayListOf()
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -40,6 +41,7 @@ class HomeViewModel : ViewModel() {
 
                     val item = document.toObject<Items>()
                     Log.d(TAG, "item" + item.toString())
+
 
                     item?.let { itemArrayList.add(it) }
 
