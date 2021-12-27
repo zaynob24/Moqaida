@@ -7,6 +7,7 @@ class Requests(
 //    val itemOwnerPhone: String = "",
 
 
+    val requestID: String ="" ,
     val itemNameMassage: String = "",
     val itemDescriptionMassage: String = "",
 

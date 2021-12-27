@@ -1,5 +1,6 @@
 package com.example.moqaida.repositories
 
+import android.content.SharedPreferences
 import android.net.Uri
 import com.example.moqaida.model.Items
 import com.example.moqaida.model.Requests
@@ -16,6 +17,9 @@ const val SHARED_PREF_FILE = "Auth"
 const val USER_ID = "userId"
 const val USER_EMAIL = "userEmail"
 const val USER_PHONE = "userPhone"
+const val USER_NAME = "userFullName"
+
+const val EMAIL = "email"
 
 private const val ITEM = "items"
 private const val REQUESTS = "requests"
@@ -35,6 +39,7 @@ class FirebaseServiceRepository {
 
     private val requestCollection = db.collection(USER).document(firebaseAuth.currentUser!!.uid).collection(REQUESTS)
 
+
     //-------------------------------------------------------------------------------------------------------//
 
 
@@ -52,6 +57,9 @@ class FirebaseServiceRepository {
 
    // Login
     fun login(email: String, password: String)= firebaseAuth.signInWithEmailAndPassword(email,password)
+
+    // retrieve user info
+    suspend fun retrieveUserInfo(email:String)=userCollection.whereEqualTo(EMAIL,email).get().await()
 
     // retrieve Items
     suspend fun  retrieveItems() =  itemInfoCollection.get().await()

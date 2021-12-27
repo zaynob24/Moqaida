@@ -39,7 +39,7 @@ class LoginFragment : Fragment() {
             it.setCancelable(false)
         }
 
-        // To store user details
+//        // To clear user details
         sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
         sharedPrefEditor = sharedPref.edit()
 
@@ -73,6 +73,11 @@ class LoginFragment : Fragment() {
 
         binding.logutbutton.setOnClickListener {
             firebaseAuth.signOut()
+
+            // clear User Info  in shared Pref
+            sharedPrefEditor.clear()
+                .commit()
+
             checkLoggedInState()
 
         }
@@ -93,18 +98,14 @@ class LoginFragment : Fragment() {
 
 
     private fun observer() {
-        loginViewModel.loginLiveData.observe(viewLifecycleOwner, {
-            it?.let {
+
+        // login observer
+        loginViewModel.loginLiveData.observe(viewLifecycleOwner, { email ->
+            email?.let {
+
                 progressDialog.dismiss()
                 Toast.makeText(requireActivity(), R.string.user_logged_in_successfully, Toast.LENGTH_SHORT).show()
 
-
-                // get User Info to store it in shared Pref
-                sharedPrefEditor.putString(USER_ID,it)
-                sharedPrefEditor.putString(USER_EMAIL,it)
-                sharedPrefEditor.putString(USER_PHONE,it)
-
-                sharedPrefEditor.commit()
 
                 loginViewModel.loginLiveData.postValue(null)
                 checkLoggedInState()
@@ -119,5 +120,8 @@ class LoginFragment : Fragment() {
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
                 loginViewModel.loginErrorLiveData.postValue(null)
             }
-        })    }
+        })
+
+    }
+
 }
