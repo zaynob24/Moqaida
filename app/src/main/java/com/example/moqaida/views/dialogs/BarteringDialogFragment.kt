@@ -1,6 +1,7 @@
 package com.example.moqaida.views.dialogs
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,11 +10,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.moqaida.R
 import com.example.moqaida.databinding.FragmentBarteringDialogBinding
 import com.example.moqaida.model.Items
 import com.example.moqaida.model.Requests
-import com.example.moqaida.views.main.AddItemViewModel
+import com.example.moqaida.model.Users
+import com.example.moqaida.repositories.SHARED_PREF_FILE
+import com.example.moqaida.repositories.USER_EMAIL
+import com.example.moqaida.repositories.USER_NAME
+import com.example.moqaida.repositories.USER_PHONE
 
 private const val TAG = "BarteringDialogFragment"
 class BarteringDialogFragment (val item:Items): DialogFragment(){
@@ -44,6 +50,7 @@ class BarteringDialogFragment (val item:Items): DialogFragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        observer()
 
         //-----------------------------------------------------------------//
 
@@ -60,8 +67,24 @@ class BarteringDialogFragment (val item:Items): DialogFragment(){
 
                 // send Bartering Request details to fireStore
 
-                barteringDialogViewModel.sendBarteringRequest(Requests(yourItemName,description,))
+                val sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
 
+                // get current user information
+                val currentUser = Users()
+                currentUser.fullName = sharedPref.getString(USER_NAME,"").toString()
+                currentUser.email = sharedPref.getString(USER_EMAIL,"").toString()
+                currentUser.phoneNumber = sharedPref.getString(USER_PHONE,"").toString()
+
+                Log.d(TAG,"Requests: ${currentUser.fullName} ,${currentUser.email},${currentUser.phoneNumber}")
+
+
+                // pass time in millis to use it as id of the request
+
+                val request =(Requests(System.currentTimeMillis().toString(),yourItemName,description,currentUser,item))
+
+                barteringDialogViewModel.sendBarteringRequest(request)
+
+                Log.d(TAG,"Requests: ${request.itemNameMassage} ,${request.user!!.phoneNumber},${request.item!!.itemName}")
 
             }else{
                 Toast.makeText(requireContext(),getText(R.string.fill_required), Toast.LENGTH_SHORT).show()
@@ -75,7 +98,6 @@ class BarteringDialogFragment (val item:Items): DialogFragment(){
         binding.closeBarteringButton.setOnClickListener {
             dismiss()
         }
-
 
         }
 
@@ -126,4 +148,31 @@ class BarteringDialogFragment (val item:Items): DialogFragment(){
         return isAllDataFilled
 }
 
+    //--------------------------------------------------------------------------------------------------//
+
+    private fun observer() {
+
+        // login observer
+        barteringDialogViewModel.sendBarteringRequestLiveData.observe(viewLifecycleOwner, {
+            it?.let {
+
+                progressDialog.dismiss()
+                Toast.makeText(requireActivity(), R.string.send_request_successfully, Toast.LENGTH_SHORT).show()
+
+
+                barteringDialogViewModel.sendBarteringRequestLiveData.postValue(null)
+                 dismiss()
+
+            }
+        })
+
+        barteringDialogViewModel.sendBarteringRequestErrorLiveData.observe(viewLifecycleOwner, {
+            it?.let {
+                progressDialog.dismiss()
+                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+                barteringDialogViewModel.sendBarteringRequestErrorLiveData.postValue(null)
+            }
+        })
+
+    }
 }

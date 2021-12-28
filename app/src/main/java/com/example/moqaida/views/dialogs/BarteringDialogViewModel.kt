@@ -23,6 +23,8 @@ class BarteringDialogViewModel: ViewModel()  {
 
     fun sendBarteringRequest(request: Requests) {
 
+        Log.d(TAG, "sendBarteringRequest")
+
         viewModelScope.launch(Dispatchers.IO) {
 
             try {
@@ -37,18 +39,20 @@ class BarteringDialogViewModel: ViewModel()  {
                         Log.d(TAG, "Request sent successfully: $response")
 
                     } else {
+                        Log.d(TAG, "sendBarteringRequest: else")
+
                         Log.d(TAG, task.exception!!.message.toString())
                         sendBarteringRequestErrorLiveData.postValue(task.exception!!.message)
                     }
                 }
             } catch (e: Exception) {
+
                 Log.d(TAG, "Catch: ${e.message}")
                 sendBarteringRequestErrorLiveData.postValue(e.message)
             }
         }
 
     }
-
 
 
 }

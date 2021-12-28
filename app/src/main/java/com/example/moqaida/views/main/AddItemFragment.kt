@@ -19,6 +19,7 @@ import android.widget.AutoCompleteTextView
 import android.widget.Toast
 
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.moqaida.MainActivity
 import com.example.moqaida.R
 import com.example.moqaida.databinding.FragmentAddItemBinding
@@ -344,6 +345,7 @@ class AddItemFragment : Fragment() {
                  progressDialog.dismiss()  // To close the progress Dialog after uploading image
                  Toast.makeText(requireActivity(), R.string.item_upload_successfully, Toast.LENGTH_SHORT).show()
                 addItemViewModel.uploadItemLiveData.postValue(null)
+                findNavController().popBackStack()
             }
         })
 

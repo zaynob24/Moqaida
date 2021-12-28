@@ -24,7 +24,6 @@ const val EMAIL = "email"
 private const val ITEM = "items"
 private const val REQUESTS = "requests"
 
-
 class FirebaseServiceRepository {
 
     val  firebaseAuth = FirebaseAuth.getInstance()
@@ -37,7 +36,7 @@ class FirebaseServiceRepository {
     private val userCollection = db.collection(USER)
     private val itemInfoCollection = db.collection(ITEM)
 
-    private val requestCollection = db.collection(USER).document(firebaseAuth.currentUser!!.uid).collection(REQUESTS)
+    private val requestCollection = db.collection(USER)
 
 
     //-------------------------------------------------------------------------------------------------------//
@@ -66,7 +65,8 @@ class FirebaseServiceRepository {
 
 
     // Insert Bartering Request into Request collection
-    fun sendBarteringRequest(request: Requests) = requestCollection.document().set(request)
+
+    fun sendBarteringRequest(request: Requests) = requestCollection.document(firebaseAuth.currentUser!!.uid).collection(REQUESTS).document().set(request)
 
     //-------------------------------------------------------------------------------------------------------//
 

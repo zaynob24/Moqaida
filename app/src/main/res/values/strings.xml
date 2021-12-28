@@ -330,4 +330,8 @@
     <string name="required">Required</string>
     <string name="fill_required">please fill required</string>
 
+<!--    Bartering Dialog Fragment-->
+    <string name="send_request_successfully">your requests has been sent</string>
+
+
 </resources>
