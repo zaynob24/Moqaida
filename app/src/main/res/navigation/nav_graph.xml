@@ -7,12 +7,12 @@
     <fragment
         android:id="@+id/ItemDetailsFragment"
         android:name="com.example.moqaida.views.main.ItemDetailsFragment"
-        android:label="ItemDetailsFragment"
+        android:label="Item Details"
         tools:layout="@layout/fragment_item_details" />
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.moqaida.views.main.HomeFragment"
-        android:label="HomeFragment" >
+        android:label="Home">
         <action
             android:id="@+id/action_homeFragment_to_ItemDetailsFragment"
             app:destination="@id/ItemDetailsFragment" />
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.moqaida.views.idintity.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="Login">
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.moqaida.views.idintity.SignUpFragment"
-        android:label="SignUpFragment" >
+        android:label="SignUp">
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -39,8 +39,8 @@
     <fragment
         android:id="@+id/barteringRequestFragment"
         android:name="com.example.moqaida.views.main.BarteringRequestFragment"
-        android:label="fragment_bartering_request"
-        tools:layout="@layout/fragment_bartering_request" >
+        android:label="bartering requests"
+        tools:layout="@layout/fragment_bartering_request">
         <action
             android:id="@+id/action_barteringRequestFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -48,15 +48,21 @@
     <fragment
         android:id="@+id/myItemFragment"
         android:name="com.example.moqaida.views.main.MyItemFragment"
-        android:label="MyItemFragment" >
+        android:label="My Item">
         <action
             android:id="@+id/action_myItemFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_myItemFragment_to_updateItemFragment"
+            app:destination="@id/updateItemFragment" />
+        <action
+            android:id="@+id/action_myItemFragment_to_addItemFragment"
+            app:destination="@id/addItemFragment" />
     </fragment>
     <fragment
         android:id="@+id/addItemFragment"
         android:name="com.example.moqaida.views.main.AddItemFragment"
-        android:label="AddItemFragment" >
+        android:label="Add Item">
         <action
             android:id="@+id/action_addItemFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -64,10 +70,14 @@
     <fragment
         android:id="@+id/profileFragment2"
         android:name="com.example.moqaida.views.main.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        android:label="profile"
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment2_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/updateItemFragment"
+        android:name="com.example.moqaida.views.main.UpdateItemFragment"
+        android:label=" " />
 </navigation>

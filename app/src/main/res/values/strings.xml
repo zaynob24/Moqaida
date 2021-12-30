@@ -313,6 +313,7 @@
 
     <!--  update item -->
     <string name="change_photo">Change Photo</string>
+    <string name="item_update_successfully">update successfully</string>
 
     <!--    contact-popup-->
     <string name="contact">Contact..</string>

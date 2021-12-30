@@ -48,7 +48,7 @@ class BarteringDialogViewModel: ViewModel()  {
             } catch (e: Exception) {
 
                 Log.d(TAG, "Catch: ${e.message}")
-                sendBarteringRequestErrorLiveData.postValue(e.message)
+                sendBarteringRequestErrorLiveData.postValue(" ${e.message} ")
             }
         }
 

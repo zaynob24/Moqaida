@@ -28,6 +28,7 @@ import com.example.moqaida.repositories.SHARED_PREF_FILE
 import com.example.moqaida.repositories.USER_ID
 import com.example.moqaida.util.Permissions
 import com.example.moqaida.views.dialogs.ImageDialogFragment
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.tasks.await
@@ -47,10 +48,11 @@ import kotlinx.coroutines.withContext
 private const val TAG = "AddItemFragment"
 class AddItemFragment : Fragment() {
 
-    private lateinit var USERID :String
+//    private lateinit var USERID :String
     val imageRef = Firebase.storage.reference
     private var imageUri: Uri? = null
     private var imageFileName = ""
+    val  firebaseAuth = FirebaseAuth.getInstance()
 
     private val IMAGE_PICKER = 0
     private lateinit var binding: FragmentAddItemBinding
@@ -97,11 +99,11 @@ class AddItemFragment : Fragment() {
         binding.purchasedPriceAddItem.inputType = InputType.TYPE_CLASS_NUMBER
         binding.estimatedPriceAddItem.inputType = InputType.TYPE_CLASS_NUMBER
 
-        //-----------------------------------------------------------------//
-
-        // get userId
-        val sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
-        USERID = sharedPref.getString(USER_ID,"").toString()
+//        //-----------------------------------------------------------------//
+//
+//        // get userId
+//        val sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
+//        USERID = sharedPref.getString(USER_ID,"").toString()
 
         //-----------------------------------------------------------------//
 
@@ -323,7 +325,7 @@ class AddItemFragment : Fragment() {
                 addItemViewModel.uploadImageLiveData.postValue(null)
 
                 // save item details (name,image,price and so on )to fireStore
-                addItemViewModel.uploadItemInfo(Items(name,location,yearsOfUse,purchasedPrice,estimatedPrice,description,imageUrl,USERID))
+                addItemViewModel.uploadItemInfo(Items(name,location,yearsOfUse,purchasedPrice,estimatedPrice,description,imageUrl,imageFileName,firebaseAuth.currentUser!!.uid))
 
             }
         })

@@ -2,11 +2,14 @@ package com.example.moqaida.repositories
 
 import android.content.SharedPreferences
 import android.net.Uri
+import android.util.Log
 import com.example.moqaida.model.Items
 import com.example.moqaida.model.Requests
 import com.example.moqaida.model.Users
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.tasks.await
@@ -18,12 +21,14 @@ const val USER_ID = "userId"
 const val USER_EMAIL = "userEmail"
 const val USER_PHONE = "userPhone"
 const val USER_NAME = "userFullName"
+const val IMAGE_NAME = "imageName"
 
 const val EMAIL = "email"
 
 private const val ITEM = "items"
 private const val REQUESTS = "requests"
 
+private const val TAG = "FirebaseServiceReposito"
 class FirebaseServiceRepository {
 
     val  firebaseAuth = FirebaseAuth.getInstance()
@@ -63,10 +68,20 @@ class FirebaseServiceRepository {
     // retrieve Items
     suspend fun  retrieveItems() =  itemInfoCollection.get().await()
 
+    // retrieve My Items
+    suspend fun  retrieveMyItems() =  itemInfoCollection.whereEqualTo(USER_ID,firebaseAuth.currentUser!!.uid).get().await()
 
     // Insert Bartering Request into Request collection
-
     fun sendBarteringRequest(request: Requests) = requestCollection.document(firebaseAuth.currentUser!!.uid).collection(REQUESTS).document().set(request)
+
+
+    // update item
+     fun  updateItem(item: Items): Task<Void> { Log.d(TAG,item.documentId)
+       return itemInfoCollection.document(item.documentId).set(item,
+        SetOptions.merge())
+
+     }
+
 
     //-------------------------------------------------------------------------------------------------------//
 

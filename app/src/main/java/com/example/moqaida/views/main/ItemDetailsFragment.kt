@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.example.moqaida.MainActivity
 import com.example.moqaida.databinding.FragmentItemDetailsBinding
 import com.example.moqaida.views.dialogs.BarteringDialogFragment
-import com.example.moqaida.views.dialogs.ImageDialogFragment
 
 
 private const val TAG = "ItemDetailsFragment"

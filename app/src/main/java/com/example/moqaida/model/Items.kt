@@ -2,7 +2,6 @@ package com.example.moqaida.model
 
 data class Items (
 
-//    val id:String="",
     val itemName:String = "" ,
     val location: String = "",
     val yearsOfUse: String = "",
@@ -10,7 +9,9 @@ data class Items (
     val estimatedPrice: String = "",
     val description: String = "",
     val imageUrl: String = "",
+    val imageName: String = "",
     val userId: String = "",
+    var documentId:String=""
 
     )
 

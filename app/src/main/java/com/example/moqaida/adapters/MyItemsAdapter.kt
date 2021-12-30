@@ -1,33 +1,31 @@
 package com.example.moqaida.adapters
 
 import android.content.Context
-import android.net.Uri
-import android.nfc.Tag
 import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.moqaida.R
 import com.example.moqaida.databinding.AllItemLayoutBinding
+import com.example.moqaida.databinding.MyItemLayoutBinding
 import com.example.moqaida.model.Items
 import com.example.moqaida.views.main.HomeViewModel
-import com.squareup.picasso.Picasso
+import com.example.moqaida.views.main.MyItemViewModel
 
-private const val TAG = "ItemsAdapter"
+private const val TAG = "MyItemsAdapter"
+
 // context to use it with Glide , homeViewModel to use it for pass item selected
-class ItemsAdapter(val context: Context ,val homeViewModel: HomeViewModel) :
-    RecyclerView.Adapter<ItemsAdapter.ItemsViewHolder>() {
+class MyItemsAdapter(val context: Context, val myItemsViewModel: MyItemViewModel) :
+    RecyclerView.Adapter<MyItemsAdapter.MyItemsViewHolder>() {
 
 
-// the adapter will change all adapter item if we give it new data(delete old one then add new one) but
+    // the adapter will change all adapter item if we give it new data(delete old one then add new one) but
     // if we use DiffUtil  it will keep old data and just change or add the new one
 
     val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Items>() {
@@ -53,46 +51,44 @@ class ItemsAdapter(val context: Context ,val homeViewModel: HomeViewModel) :
 
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsAdapter.ItemsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyItemsAdapter.MyItemsViewHolder {
 
-        Log.d(TAG,"onCreateViewHolder")
 
-        val binding = AllItemLayoutBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return ItemsViewHolder(binding)
+        val binding = MyItemLayoutBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return MyItemsViewHolder(binding)
     }
 
-
-    override fun onBindViewHolder(holder: ItemsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyItemsViewHolder, position: Int) {
 
         val item = differ.currentList[position]
 
         holder.itemView.setOnClickListener {
-            homeViewModel.selectedItemsLiveData.postValue(item)
-            holder.itemView.findNavController().navigate(R.id.action_homeFragment_to_ItemDetailsFragment)
+            myItemsViewModel.myItemSelectedLiveData.postValue(item)
+            holder.itemView.findNavController().navigate(R.id.action_myItemFragment_to_updateItemFragment)
 
         }
+
+
 
         holder.bind(item)
 
     }
 
     override fun getItemCount(): Int {
+
         Log.d(TAG,differ.currentList.size.toString())
 
-        return differ.currentList.size
-    }
+        return differ.currentList.size    }
 
 
-    inner class ItemsViewHolder(val binding: AllItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+   inner class MyItemsViewHolder(val binding: MyItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
 
         fun bind(item:Items){
 
             Log.d(TAG,item.itemName)
-            binding.itemName.text = item.itemName
+            binding.myItemNametextView.text = item.itemName
 
-            //val url = "https://firebasestorage.googleapis.com/v0/b/moqaida-z.appspot.com/o/images%2F1639688238968?alt=media&token=c1cbbd99-21e8-4887-b309-2388412dea6f"
-            Log.d(TAG,item.imageUrl)
 
             Glide
                 .with(context)
@@ -100,7 +96,13 @@ class ItemsAdapter(val context: Context ,val homeViewModel: HomeViewModel) :
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
                 .placeholder(R.drawable.logo)
-                .into(binding.itemImageView)
+                .into(binding.myItemImageView)
+
+
+            binding.deleteMyItemButton.setOnClickListener {
+
+            }
+
 
         }
     }

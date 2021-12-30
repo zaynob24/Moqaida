@@ -9,7 +9,6 @@ import com.example.moqaida.repositories.FirebaseServiceRepository
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 private const val TAG = "HomeViewModel"
 
@@ -40,14 +39,24 @@ class HomeViewModel : ViewModel() {
                     Log.d(TAG, "document" + document.toString())
 
                     val item = document.toObject<Items>()
-                    Log.d(TAG, "item" + item.toString())
+                   // Log.d(TAG, "item" + item.toString())
 
+                    if (item != null) {
+                        item.documentId = document.id
 
-                    item?.let { itemArrayList.add(it) }
+                        Log.d(TAG, item.documentId)
+                    }
+
+                    item?.let {
+
+                        itemArrayList.add(it)
+                        Log.d(TAG, itemArrayList.toString())
+
+                    }
 
                 }
 
-                Log.d(TAG, itemArrayList.toString())
+                //Log.d(TAG, itemArrayList.toString())
                 retrieveItemsLiveData.postValue(itemArrayList)
 
                 Log.d(TAG, "retrieveItems success: $response")
