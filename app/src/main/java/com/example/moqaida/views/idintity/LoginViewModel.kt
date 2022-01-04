@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.moqaida.model.Users
 import com.example.moqaida.repositories.*
+import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -49,7 +50,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                     }
                 }
             } catch (e: Exception) {
-                Log.d(TAG, "Catch: ${e.message}")
+                Log.d(TAG, "Catch: login ${e.message}")
                 loginErrorLiveData.postValue(e.message)
             }
         }
@@ -64,33 +65,64 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO) {
             Log.d(TAG, "viewModelScope:retrieveUserInfo")
 
-            var user: Users? = null
+//            try {
+//
+//                Log.d(TAG, "try:retrieveUserInfo")
+//
+//                val response = firebaseRepo.retrieveUserInfo(email)
+//
+//                for (document in response.documents) {
+//                    user = document.toObject<Users>()!!
+//                    Log.d(TAG, "User; $user")
+//                }
+//
+//                // get User Info to store it in shared Pref
+//                sharedPrefEditor.putString(USER_NAME,user!!.fullName)
+//                sharedPrefEditor.putString(USER_EMAIL, user.email)
+//                sharedPrefEditor.putString(USER_PHONE, user.phoneNumber)
+//
+//                sharedPrefEditor.commit()
+//
+//                // post success to live data
+//                loginLiveData.postValue("success login")
+//
+//                Log.d(TAG,"USER_NAME ${user.fullName} , USER_NAME ${user.email} , USER_NAME ${user.phoneNumber}")
+//
+//
+//            } catch (e: Exception) {
+//                Log.d(TAG, "Catch retrieveUserInfo: ${e.message}")
+//                loginErrorLiveData.postValue(e.message)
+//
+//            }
+
 
             try {
+                val response = firebaseRepo.retrieveUserInfo()
 
-                Log.d(TAG, "try:retrieveUserInfo")
+                response.addSnapshotListener { value, error ->
+                    if (error != null) {
+                        Log.d(TAG, "Get user info error: ${error.message}")
+                        return@addSnapshotListener
+                    }
 
-                val response = firebaseRepo.retrieveUserInfo(email)
+                    value?.let {
+                        val currentUser = value.toObject(Users::class.java)!!
 
-                for (document in response.documents) {
-                    user = document.toObject<Users>()!!
-                }
-
-                // get User Info to store it in shared Pref
-                sharedPrefEditor.putString(USER_NAME,user!!.fullName)
-                sharedPrefEditor.putString(USER_EMAIL, user.email)
-                sharedPrefEditor.putString(USER_PHONE, user.phoneNumber)
+                 // get User Info to store it in shared Pref
+                sharedPrefEditor.putString(USER_NAME,currentUser.fullName)
+                sharedPrefEditor.putString(USER_EMAIL, currentUser.email)
+                sharedPrefEditor.putString(USER_PHONE, currentUser.phoneNumber)
 
                 sharedPrefEditor.commit()
 
                 // post success to live data
                 loginLiveData.postValue("success login")
-
-                Log.d(TAG,"USER_NAME ${user.fullName} , USER_NAME ${user.email} , USER_NAME ${user.phoneNumber}")
-
-
+                        Log.d(TAG, "User: $currentUser")
+                    }
+                }
             } catch (e: Exception) {
-                Log.d(TAG, "Catch: ${e.message}")
+                Log.d(TAG, "Error - catch: ${e.message}")
+                loginErrorLiveData.postValue(e.message)
             }
         }
     }

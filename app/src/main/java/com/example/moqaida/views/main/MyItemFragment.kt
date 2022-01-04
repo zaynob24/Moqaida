@@ -55,6 +55,8 @@ class MyItemFragment : Fragment() {
 
 
     private fun observer() {
+
+        //retrieve current user Items observer
         myItemViewModel.retrieveMyItemsLiveData.observe(viewLifecycleOwner, {
             it?.let {
                 Log.d(TAG,it.toString())
@@ -65,11 +67,35 @@ class MyItemFragment : Fragment() {
             }
         })
 
+        //catch retrieve current user Items error
         myItemViewModel.retrieveMyItemsErrorLiveData.observe(viewLifecycleOwner, {
             it?.let {
                 progressDialog.dismiss()
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
                 myItemViewModel.retrieveMyItemsErrorLiveData.postValue(null)
             }
-        })    }
+        })
+
+        //-----------------------------------------//
+        //delete current user selected Items observer
+        myItemViewModel.deleteMyItemsLiveData.observe(viewLifecycleOwner, {
+            it?.let {
+                Log.d(TAG,it)
+                myItemViewModel.retrieveMyItems()
+                myItemViewModel.deleteMyItemsLiveData.postValue(null)
+            }
+        })
+
+        //catch delete current user selected Items observer error
+        myItemViewModel.deleteMyItemsErrorLiveData.observe(viewLifecycleOwner, {
+            it?.let {
+                Log.d(TAG,it)
+                progressDialog.dismiss()
+                myItemViewModel.deleteMyItemsErrorLiveData.postValue(null)
+            }
+        })
+
+    }
+
+
 }

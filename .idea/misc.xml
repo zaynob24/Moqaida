@@ -11,6 +11,7 @@
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/drawable/image_icon.xml" value="0.26615384615384613" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/drawable/profile_icon.xml" value="0.23425925925925925" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/drawable/request_notifi_icon.xml" value="0.23425925925925925" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/drawable/round_corner_shape.xml" value="0.26615384615384613" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/drawable/whatsapp_icon.xml" value="0.23425925925925925" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/activity_main2.xml" value="0.25416666666666665" />
@@ -26,14 +27,14 @@
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_item_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_my_item.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_profile.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_sign_up.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/fragment_update_item.xml" value="0.264" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/list_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/list_item_years.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/my_item_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/nav_header_layout.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/request_item_layout.xml" value="0.264" />
+        <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/layout/request_item_layout.xml" value="0.4" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/menu/main_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/menu/nav_menu.xml" value="0.4" />
         <entry key="..\:/Users/aliju/AndroidStudioProjects/Moqaida/app/src/main/res/menu/update_menu.xml" value="0.19166666666666668" />

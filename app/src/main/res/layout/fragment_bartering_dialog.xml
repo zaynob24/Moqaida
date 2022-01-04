@@ -93,13 +93,14 @@
                 android:layout_height="120dp"
                 android:gravity="start" />
 
+            <ImageView
+                android:id="@+id/sendRequestButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/paper_plane_icon" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
-        <ImageView
-            android:id="@+id/sendRequestButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/paper_plane_icon" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

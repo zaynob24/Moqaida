@@ -56,6 +56,9 @@ class FirebaseServiceRepository {
     // upload Item Image to fireStorage
     fun uploadItemImage(imageUri: Uri,filename:String)= imageRef.child("images/$filename").putFile(imageUri)
 
+    // delete image
+    fun deleteImage(filename:String) = imageRef.child("images/$filename").delete()
+
     // upload Item Info to fireStore
     fun uploadItemInfo(item: Items)= itemInfoCollection.document().set(item)
 
@@ -63,7 +66,7 @@ class FirebaseServiceRepository {
     fun login(email: String, password: String)= firebaseAuth.signInWithEmailAndPassword(email,password)
 
     // retrieve user info
-    suspend fun retrieveUserInfo(email:String)=userCollection.whereEqualTo(EMAIL,email).get().await()
+     fun retrieveUserInfo()=userCollection.document(firebaseAuth.currentUser!!.uid)
 
     // retrieve Items
     suspend fun  retrieveItems() =  itemInfoCollection.get().await()
@@ -72,8 +75,13 @@ class FirebaseServiceRepository {
     suspend fun  retrieveMyItems() =  itemInfoCollection.whereEqualTo(USER_ID,firebaseAuth.currentUser!!.uid).get().await()
 
     // Insert Bartering Request into Request collection
-    fun sendBarteringRequest(request: Requests) = requestCollection.document(firebaseAuth.currentUser!!.uid).collection(REQUESTS).document().set(request)
+    fun sendBarteringRequest(request: Requests) = requestCollection.document(request.item!!.userId).collection(REQUESTS).document().set(request)
 
+    // retrieve Bartering Request
+     suspend fun retrieveBarteringRequest() = requestCollection.document(firebaseAuth.currentUser!!.uid).collection(REQUESTS).get().await()
+
+    // delete Bartering Request
+    fun deleteBarteringRequest(request: Requests) = requestCollection.document(firebaseAuth.currentUser!!.uid).collection(REQUESTS).document(request.requestID).delete()
 
     // update item
      fun  updateItem(item: Items): Task<Void> { Log.d(TAG,item.documentId)
@@ -81,6 +89,9 @@ class FirebaseServiceRepository {
         SetOptions.merge())
 
      }
+
+    // delete current user item
+    fun deleteMyItem(item: Items) = itemInfoCollection.document(item.documentId).delete()
 
 
     //-------------------------------------------------------------------------------------------------------//

@@ -133,6 +133,7 @@ class UpdateItemFragment : Fragment() {
 
         //--------------------------------------------------------------------------//
 
+            //to update item
         updateItemViewModel.updateItemLiveData.observe(viewLifecycleOwner,{
 
             it?.let {
@@ -141,9 +142,11 @@ class UpdateItemFragment : Fragment() {
                 Toast.makeText(requireActivity(), R.string.item_update_successfully, Toast.LENGTH_SHORT).show()
             }
             updateItemViewModel.updateItemLiveData.postValue(null)
+            findNavController().popBackStack()
 
         })
 
+        //catch update item error
         updateItemViewModel.updateItemErrorLiveData.observe(viewLifecycleOwner, {
             it?.let {
                 progressDialog.dismiss()
@@ -152,6 +155,7 @@ class UpdateItemFragment : Fragment() {
             }
         })
 
+        //to update image
         updateItemViewModel.updateImageLiveData.observe(viewLifecycleOwner,{
 
             it?.let {
@@ -162,6 +166,7 @@ class UpdateItemFragment : Fragment() {
 
         })
 
+        //catch update image error
         updateItemViewModel.updateImageErrorLiveData.observe(viewLifecycleOwner, {
             it?.let {
 

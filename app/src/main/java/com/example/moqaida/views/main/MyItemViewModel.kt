@@ -21,6 +21,13 @@ class MyItemViewModel : ViewModel() {
     val myItemSelectedLiveData = MutableLiveData<Items>()
 
 
+    val deleteMyItemsLiveData = MutableLiveData<String>()
+    val deleteMyItemsErrorLiveData = MutableLiveData<String>()
+
+    //-----------------------------------------------------------------------------------------------------//
+
+
+    //To retrieve current user Items
     fun retrieveMyItems() {
 
         val myItemArrayList: ArrayList<Items> = arrayListOf()
@@ -34,7 +41,7 @@ class MyItemViewModel : ViewModel() {
                     Log.d(TAG, "document" + document.toString())
 
                     val item = document.toObject<Items>()
-                   // Log.d(TAG, "item" + item.toString())
+                    // Log.d(TAG, "item" + item.toString())
 
                     if (item != null) {
                         item.documentId = document.id
@@ -46,10 +53,10 @@ class MyItemViewModel : ViewModel() {
 
                 }
 
-               // Log.d(TAG, myItemArrayList.toString())
+                // Log.d(TAG, myItemArrayList.toString())
                 retrieveMyItemsLiveData.postValue(myItemArrayList)
 
-               // Log.d(TAG, "retrieveMyItems success: $response")
+                // Log.d(TAG, "retrieveMyItems success: $response")
 
 
             } catch (e: Exception) {
@@ -57,6 +64,33 @@ class MyItemViewModel : ViewModel() {
                 retrieveMyItemsErrorLiveData.postValue(e.message)
             }
 
+        }
+    }
+
+    //-----------------------------------------------------------------------------------------------------//
+
+    fun deleteMyItem(items: Items) {
+
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val response = firebaseRepo.deleteMyItem(items)
+                response.addOnCompleteListener { task ->
+
+                    if (task.isSuccessful) {
+                        deleteMyItemsLiveData.postValue("Item delete success")
+                        // to delete image from fireStorage
+                        firebaseRepo.deleteImage(items.imageName)
+                        Log.d(TAG, "Item delete success $response")
+
+                    } else {
+                        Log.d(TAG, task.exception!!.message.toString())
+                        deleteMyItemsErrorLiveData.postValue(task.exception!!.message)
+                    }
+                }
+            } catch (e: java.lang.Exception) {
+                Log.d(TAG, "Catch: ${e.message}")
+                deleteMyItemsErrorLiveData.postValue(e.message)
+            }
         }
     }
 }

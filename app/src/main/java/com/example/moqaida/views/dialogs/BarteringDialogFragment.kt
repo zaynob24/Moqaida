@@ -43,6 +43,8 @@ class BarteringDialogFragment (val item:Items): DialogFragment(){
         progressDialog.setTitle("Loading...")
         progressDialog.setCancelable(false)
 
+        // To make dialog with round cornner
+        getDialog()!!.getWindow()?.setBackgroundDrawableResource(R.drawable.round_corner_shape)
         binding = FragmentBarteringDialogBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -78,9 +80,7 @@ class BarteringDialogFragment (val item:Items): DialogFragment(){
                 Log.d(TAG,"Requests: ${currentUser.fullName} ,${currentUser.email},${currentUser.phoneNumber}")
 
 
-                // pass time in millis to use it as id of the request
-
-                val request =(Requests(System.currentTimeMillis().toString(),yourItemName,description,currentUser,item))
+                val request =(Requests(yourItemName,description,currentUser,item))
 
                 barteringDialogViewModel.sendBarteringRequest(request)
 

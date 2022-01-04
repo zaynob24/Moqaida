@@ -1,4 +1,4 @@
-package com.example.moqaida.views.main
+package com.example.moqaida.views.idintity
 
 import android.content.Context
 import android.os.Bundle
@@ -12,6 +12,7 @@ import com.example.moqaida.databinding.FragmentProfileBinding
 import com.example.moqaida.repositories.SHARED_PREF_FILE
 import com.example.moqaida.repositories.USER_EMAIL
 import com.example.moqaida.repositories.USER_ID
+import com.example.moqaida.repositories.USER_PHONE
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -35,17 +36,43 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.loginProfileTV.setOnClickListener {
+        checkLoggedInState()
+
+        val sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE,Context.MODE_PRIVATE)
+
+        binding.emailAdrresProfile.text = sharedPref.getString(USER_EMAIL,"")
+        binding.phoneNumberProfile.text =  sharedPref.getString(USER_PHONE,"")
+
+        binding.loginTV.setOnClickListener {
 
             findNavController().navigate(R.id.action_profileFragment2_to_loginFragment)
         }
 
-        binding.buttonprofile.setOnClickListener {
+        //LogOut
+        binding.logoutProfile.setOnClickListener {
 
-             val sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE,Context.MODE_PRIVATE)
-            binding.textprofile.text = sharedPref.getString(USER_EMAIL,"")
+            firebaseAuth.signOut()
 
-            //binding.textprofile.text = firebaseAuth.currentUser?.displayName
+            // clear User Info  in shared Pref
+            sharedPref.edit().clear()
+                .apply()
+            checkLoggedInState()
+        }
+
+    }
+
+    private fun checkLoggedInState() {
+
+        firebaseAuth.currentUser?.let {
+
+            // user logged in!
+            binding.userInfoLayout.visibility = View.VISIBLE
+            binding.userNotLoginLayout.visibility = View.INVISIBLE
+
+        }?:run {
+            // user are not logged in
+            binding.userNotLoginLayout.visibility = View.VISIBLE
+            binding.userInfoLayout.visibility = View.INVISIBLE
 
         }
 

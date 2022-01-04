@@ -17,6 +17,7 @@ import com.example.moqaida.databinding.MyItemLayoutBinding
 import com.example.moqaida.model.Items
 import com.example.moqaida.views.main.HomeViewModel
 import com.example.moqaida.views.main.MyItemViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 private const val TAG = "MyItemsAdapter"
 
@@ -68,8 +69,6 @@ class MyItemsAdapter(val context: Context, val myItemsViewModel: MyItemViewModel
 
         }
 
-
-
         holder.bind(item)
 
     }
@@ -99,8 +98,21 @@ class MyItemsAdapter(val context: Context, val myItemsViewModel: MyItemViewModel
                 .into(binding.myItemImageView)
 
 
+            // To delete item
             binding.deleteMyItemButton.setOnClickListener {
 
+                    MaterialAlertDialogBuilder(context)
+                        .setTitle(R.string.alert_delete_massage)
+                        .setNegativeButton(R.string.cancel) { dialog, _ ->
+                            // Respond to negative button press
+                            dialog.dismiss()
+                        }
+                        .setPositiveButton(R.string.delete) { dialog, _ ->
+                            // Respond to positive button press
+                             myItemsViewModel.deleteMyItem(item)
+                            dialog.dismiss()
+                        }
+                        .show()
             }
 
 

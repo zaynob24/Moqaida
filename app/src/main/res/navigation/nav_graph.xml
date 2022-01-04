@@ -69,7 +69,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment2"
-        android:name="com.example.moqaida.views.main.ProfileFragment"
+        android:name="com.example.moqaida.views.idintity.ProfileFragment"
         android:label="profile"
         tools:layout="@layout/fragment_profile">
         <action
