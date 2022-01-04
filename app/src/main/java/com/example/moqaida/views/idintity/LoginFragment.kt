@@ -71,30 +71,26 @@ class LoginFragment : Fragment() {
         }
 
 
-        binding.logutbutton.setOnClickListener {
-            firebaseAuth.signOut()
-
-            // clear User Info  in shared Pref
-            sharedPrefEditor.clear()
-                .commit()
-
-            checkLoggedInState()
-
-        }
+//        binding.logutbutton.setOnClickListener {
+//            firebaseAuth.signOut()
+//
+//            // clear User Info  in shared Pref
+//            sharedPrefEditor.clear()
+//                .commit()
+//
+//            checkLoggedInState()
+//
+//        }
     }
 
-    override fun onStart() {
-        super.onStart()
-        checkLoggedInState()
-    }
 
-    private fun checkLoggedInState() {
-
-        firebaseAuth.currentUser?.let {
-            binding.loginStatetextView.text = "You are logged in!"
-        }?:run { binding.loginStatetextView.text = "You are not logged in" }
-
-    }
+//    private fun checkLoggedInState() {
+//
+//        firebaseAuth.currentUser?.let {
+//            binding.loginStatetextView.text = "You are logged in!"
+//        }?:run { binding.loginStatetextView.text = "You are not logged in" }
+//
+//    }
 
 
     private fun observer() {
@@ -108,7 +104,7 @@ class LoginFragment : Fragment() {
 
 
                 loginViewModel.loginLiveData.postValue(null)
-                checkLoggedInState()
+                //checkLoggedInState()
                 findNavController().popBackStack()
 
             }

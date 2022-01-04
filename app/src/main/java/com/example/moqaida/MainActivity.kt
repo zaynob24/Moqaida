@@ -1,12 +1,7 @@
 package com.example.moqaida
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -15,11 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.moqaida.databinding.ActivityMainBinding
 import com.example.moqaida.repositories.FirebaseServiceRepository
-import com.example.moqaida.views.MainActivity2
-import com.example.moqaida.views.idintity.LoginFragment
-import com.example.moqaida.views.main.AddItemFragment
-import com.example.moqaida.views.main.HomeFragment
-import com.example.moqaida.views.main.MyItemFragment
+
 
 //Navigation Drawer with Fragments - Navigation Component
 //https://www.youtube.com/watch?v=PvuaPL4D-N8&ab_channel=CodeWithMazn
@@ -47,14 +38,6 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph,binding.drawerLayout)
 
         setupActionBarWithNavController(navController,appBarConfiguration)
-
-
-//        binding.signUpButton.setOnClickListener {
-//
-//            val intent = Intent(this,MainActivity2::class.java)
-//            startActivity(intent)
-//            finish()
-//        }
 
     }
 

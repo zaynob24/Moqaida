@@ -111,18 +111,5 @@
                 android:text="@string/SignUp" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/loginStatetextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="34sp" />
-
-        <Button
-            android:id="@+id/logutbutton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Logout" />
-
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

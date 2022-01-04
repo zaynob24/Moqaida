@@ -48,7 +48,6 @@ import kotlinx.coroutines.withContext
 private const val TAG = "AddItemFragment"
 class AddItemFragment : Fragment() {
 
-//    private lateinit var USERID :String
     val imageRef = Firebase.storage.reference
     private var imageUri: Uri? = null
     private var imageFileName = ""
@@ -91,7 +90,14 @@ class AddItemFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        checkLoggedInState()
 
+        // if user not login
+        binding.loginTV.setOnClickListener {
+            findNavController().navigate(R.id.action_addItemFragment_to_loginFragment)
+        }
+
+        //-----------------------------------------//
            // to fill usedFor and Location menu with list of options
         fillMenuList()
 
@@ -99,11 +105,6 @@ class AddItemFragment : Fragment() {
         binding.purchasedPriceAddItem.inputType = InputType.TYPE_CLASS_NUMBER
         binding.estimatedPriceAddItem.inputType = InputType.TYPE_CLASS_NUMBER
 
-//        //-----------------------------------------------------------------//
-//
-//        // get userId
-//        val sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
-//        USERID = sharedPref.getString(USER_ID,"").toString()
 
         //-----------------------------------------------------------------//
 
@@ -365,4 +366,20 @@ class AddItemFragment : Fragment() {
 
     //--------------------------------------------------------------------------------------------------------------//
 
+    private fun checkLoggedInState() {
+
+        firebaseAuth.currentUser?.let {
+
+            // user logged in!
+            binding.addItemLayout.visibility = View.VISIBLE
+            binding.addItemNotLoginLayout.visibility = View.GONE
+
+        }?:run {
+            // user are not logged in
+            binding.addItemNotLoginLayout.visibility = View.VISIBLE
+            binding.addItemLayout.visibility = View.GONE
+
+        }
+
+    }
 }

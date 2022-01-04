@@ -14,6 +14,7 @@ import com.example.moqaida.R
 import com.example.moqaida.adapters.ItemsAdapter
 import com.example.moqaida.adapters.MyItemsAdapter
 import com.example.moqaida.databinding.FragmentMyItemBinding
+import com.google.firebase.auth.FirebaseAuth
 
 private const val TAG = "MyItemFragment"
 class MyItemFragment : Fragment() {
@@ -22,6 +23,7 @@ class MyItemFragment : Fragment() {
 
     private val myItemViewModel: MyItemViewModel by activityViewModels()
     private lateinit var progressDialog: ProgressDialog
+    val  firebaseAuth = FirebaseAuth.getInstance()
 
     private lateinit var myItemRecyclerViewAdapter : MyItemsAdapter
 
@@ -42,6 +44,14 @@ class MyItemFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        checkLoggedInState()
+
+        // if user not login
+        binding.loginTV.setOnClickListener {
+            findNavController().navigate(R.id.action_myItemFragment_to_loginFragment)
+        }
+
+        //-----------------------------------------//
         myItemRecyclerViewAdapter = MyItemsAdapter(requireContext(),myItemViewModel)
         binding.myItemRecyclerView.adapter = myItemRecyclerViewAdapter
 
@@ -97,5 +107,23 @@ class MyItemFragment : Fragment() {
 
     }
 
+    //--------------------------------------------------------------------------------------------------------------//
+
+    private fun checkLoggedInState() {
+
+        firebaseAuth.currentUser?.let {
+
+            // user logged in!
+            binding.myItemLayout.visibility = View.VISIBLE
+            binding.addItemNotLoginLayout.visibility = View.GONE
+
+        }?:run {
+            // user are not logged in
+            binding.addItemNotLoginLayout.visibility = View.VISIBLE
+            binding.myItemLayout.visibility = View.GONE
+
+        }
+
+    }
 
 }

@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/profile_icon" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

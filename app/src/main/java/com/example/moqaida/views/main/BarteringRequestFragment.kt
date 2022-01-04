@@ -9,11 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.moqaida.R
 import com.example.moqaida.adapters.ItemsAdapter
 import com.example.moqaida.adapters.RequestAdapter
 import com.example.moqaida.databinding.FragmentBarteringRequestBinding
 import com.example.moqaida.databinding.FragmentHomeBinding
+import com.google.firebase.auth.FirebaseAuth
 
 private const val TAG = "BarteringRequestFragmen"
 class BarteringRequestFragment : Fragment() {
@@ -22,6 +24,7 @@ class BarteringRequestFragment : Fragment() {
 
     private val barteringRequestViewModel: BarteringRequestViewModel by activityViewModels()
     private lateinit var progressDialog: ProgressDialog
+    val  firebaseAuth = FirebaseAuth.getInstance()
 
     private lateinit var requestRecyclerViewAdapter : RequestAdapter
 
@@ -44,6 +47,13 @@ class BarteringRequestFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        checkLoggedInState()
+
+        // if user not login
+        binding.loginTV.setOnClickListener {
+            findNavController().navigate(R.id.action_barteringRequestFragment_to_loginFragment)
+        }
+        //------------------------------------------------------------------------------------------//
         requestRecyclerViewAdapter = RequestAdapter(requireContext(),barteringRequestViewModel)
         binding.requestRecyclerView.adapter = requestRecyclerViewAdapter
 
@@ -92,6 +102,25 @@ class BarteringRequestFragment : Fragment() {
             }
         })
 
+
+    }
+
+    //--------------------------------------------------------------------------------------------------------------//
+
+    private fun checkLoggedInState() {
+
+        firebaseAuth.currentUser?.let {
+
+            // user logged in!
+            binding.requestRecyclerView.visibility = View.VISIBLE
+            binding.addItemNotLoginLayout.visibility = View.INVISIBLE
+
+        }?:run {
+            // user are not logged in
+            binding.addItemNotLoginLayout.visibility = View.VISIBLE
+            binding.requestRecyclerView.visibility = View.INVISIBLE
+
+        }
 
     }
 }
