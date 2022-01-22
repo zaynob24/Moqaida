@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.moqaida.R
 import com.example.moqaida.databinding.FragmentUpdateItemBinding
 import com.example.moqaida.model.Items
@@ -116,9 +117,12 @@ class UpdateItemFragment : Fragment() {
                 //imageUri = item.imageUrl
                 currentItem = it
 
+                //fill the fields with selected items information
                 Glide
                     .with(requireContext())
                     .load(item.imageUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true) // to stop Cache
                     .into(binding.myItemImageUpdate)
 
                 binding.udateItemNameFiled.setText(item.itemName)
@@ -159,6 +163,8 @@ class UpdateItemFragment : Fragment() {
         updateItemViewModel.updateImageLiveData.observe(viewLifecycleOwner,{
 
             it?.let {
+                //val progress = getLoadingProgress()
+                binding.indicator.setProgressCompat(100,true)
                 Toast.makeText(requireActivity(), R.string.image_upload_successfully, Toast.LENGTH_SHORT).show()
             }
 
@@ -287,6 +293,8 @@ class UpdateItemFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == IMAGE_PICKER && resultCode == Activity.RESULT_OK) {
+
+            binding.indicator.visibility = View.VISIBLE
 
             //using Matisse library to take uri of chosen image
             imageUri = Matisse.obtainResult(data)[0]//[0] index 0 to take first index of the array of photo selected

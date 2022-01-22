@@ -98,7 +98,7 @@ class ItemsAdapter(val context: Context ,val homeViewModel: HomeViewModel) :
                 .with(context)
                 .load(item.imageUrl)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)
+                .skipMemoryCache(true) // to stop Cache so when add new post the list updated
                 .placeholder(R.drawable.logo)
                 .into(binding.itemImageView)
 

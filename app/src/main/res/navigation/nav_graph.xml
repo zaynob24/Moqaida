@@ -24,6 +24,12 @@
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_enterPhoneFragment"
+            app:destination="@id/enterPhoneFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -80,4 +86,31 @@
         android:id="@+id/updateItemFragment"
         android:name="com.example.moqaida.views.main.UpdateItemFragment"
         android:label=" " />
+    <fragment
+        android:id="@+id/verifyPhoneDialogFragment"
+        android:name="com.example.moqaida.views.dialogs.VerifyPhoneDialogFragment"
+        android:label="VerifyPhoneDialogFragment" >
+        <action
+            android:id="@+id/action_verifyPhoneDialogFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment"
+            app:popUpTo="@id/signUpFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/enterPhoneFragment"
+        android:name="com.example.moqaida.views.idintity.phone.EnterPhoneFragment"
+        android:label="EnterPhoneFragment" >
+        <action
+            android:id="@+id/action_enterPhoneFragment_to_verifyPhoneFragment"
+            app:destination="@id/verifyPhoneFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verifyPhoneFragment"
+        android:name="com.example.moqaida.views.idintity.phone.VerifyPhoneFragment"
+        android:label="Verify Phone"
+        tools:layout="@layout/fragment_vierfy_phone">
+        <action
+            android:id="@+id/action_verifyPhoneFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
 </navigation>

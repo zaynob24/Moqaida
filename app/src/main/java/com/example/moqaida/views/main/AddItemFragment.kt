@@ -24,8 +24,6 @@ import com.example.moqaida.MainActivity
 import com.example.moqaida.R
 import com.example.moqaida.databinding.FragmentAddItemBinding
 import com.example.moqaida.model.Items
-import com.example.moqaida.repositories.SHARED_PREF_FILE
-import com.example.moqaida.repositories.USER_ID
 import com.example.moqaida.util.Permissions
 import com.example.moqaida.views.dialogs.ImageDialogFragment
 import com.google.firebase.auth.FirebaseAuth
@@ -35,7 +33,6 @@ import kotlinx.coroutines.tasks.await
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.internal.entity.CaptureStrategy
-import com.zhihu.matisse.internal.entity.Item
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -104,7 +101,6 @@ class AddItemFragment : Fragment() {
            // to make editText accept number only (for price)
         binding.purchasedPriceAddItem.inputType = InputType.TYPE_CLASS_NUMBER
         binding.estimatedPriceAddItem.inputType = InputType.TYPE_CLASS_NUMBER
-
 
         //-----------------------------------------------------------------//
 

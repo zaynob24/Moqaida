@@ -51,7 +51,9 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.signupTextView.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
+            //findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_enterPhoneFragment)
+
         }
 
         observer()
@@ -105,7 +107,7 @@ class LoginFragment : Fragment() {
 
                 loginViewModel.loginLiveData.postValue(null)
                 //checkLoggedInState()
-                findNavController().popBackStack()
+                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
 
             }
         })
