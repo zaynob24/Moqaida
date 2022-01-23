@@ -18,6 +18,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.moqaida.R
 import com.example.moqaida.databinding.FragmentUpdateItemBinding
 import com.example.moqaida.model.Items
+import com.example.moqaida.util.Permissions
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.internal.entity.CaptureStrategy
@@ -74,6 +75,7 @@ class UpdateItemFragment : Fragment() {
 
         binding.UploadImageUpdate.setOnClickListener {
 
+            Permissions.checkPermission(requireContext(), requireActivity())
             showImagePicker()
         }
     }
@@ -115,7 +117,7 @@ class UpdateItemFragment : Fragment() {
 
 
                 //imageUri = item.imageUrl
-                currentItem = it
+                currentItem = item
 
                 //fill the fields with selected items information
                 Glide
@@ -144,9 +146,10 @@ class UpdateItemFragment : Fragment() {
 
                 progressDialog.dismiss()
                 Toast.makeText(requireActivity(), R.string.item_update_successfully, Toast.LENGTH_SHORT).show()
+                findNavController().popBackStack()
+
             }
             updateItemViewModel.updateItemLiveData.postValue(null)
-            findNavController().popBackStack()
 
         })
 
@@ -155,8 +158,9 @@ class UpdateItemFragment : Fragment() {
             it?.let {
                 progressDialog.dismiss()
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
-                updateItemViewModel.updateItemErrorLiveData.postValue(null)
             }
+            updateItemViewModel.updateItemErrorLiveData.postValue(null)
+
         })
 
         //to update image
@@ -178,8 +182,9 @@ class UpdateItemFragment : Fragment() {
 
                 Log.d(TAG,"updateImageErrorLiveData"+it)
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
-                updateItemViewModel.updateImageErrorLiveData.postValue(null)
             }
+            updateItemViewModel.updateImageErrorLiveData.postValue(null)
+
         })
 
     }
@@ -295,6 +300,7 @@ class UpdateItemFragment : Fragment() {
         if (requestCode == IMAGE_PICKER && resultCode == Activity.RESULT_OK) {
 
             binding.indicator.visibility = View.VISIBLE
+            binding.indicator.isIndeterminate = true
 
             //using Matisse library to take uri of chosen image
             imageUri = Matisse.obtainResult(data)[0]//[0] index 0 to take first index of the array of photo selected
@@ -304,8 +310,10 @@ class UpdateItemFragment : Fragment() {
                 .load(imageUri)
                 .into(binding.myItemImageUpdate)
 
+            //TODO: handle netConnection
+
             // check if user pick new image before update it
-            imageUri?.let { updateItemViewModel.updateItemImage(it,currentItem.imageName) }
+            imageUri?.let { updateItemViewModel.updateItemImage(it, currentItem.imageName) }
 
         }
 

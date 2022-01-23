@@ -2,6 +2,7 @@ package com.example.moqaida.views.idintity.phone
 
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,8 +26,8 @@ class VerifyPhoneFragment : Fragment() {
     private lateinit var binding: FragmentVierfyPhoneBinding
     private lateinit var progressDialog: ProgressDialog
 
-    val phoneNumber = "+966548048523"
-    //private lateinit var phoneNumber : String
+    //val phoneNumber = "+966548048523"
+    private lateinit var phoneNumber : String
 
     //create an instance of FirebaseAuth and initialize it with the FirebaseAuth.getInstance() method
     var auth = FirebaseAuth.getInstance()
@@ -41,9 +42,9 @@ class VerifyPhoneFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-//        phoneNumber = arguments?.getString(PHONE_ID_KEY)!!
-//
-//        Log.d(TAG,"see:"+ phoneNumber)
+        phoneNumber = arguments?.getString(PHONE_ID_KEY)!!
+
+        Log.d(TAG,"see:"+ phoneNumber)
 
         progressDialog = ProgressDialog(requireActivity())
         progressDialog.setTitle("Loading...")
@@ -53,52 +54,53 @@ class VerifyPhoneFragment : Fragment() {
 
           //TODO------------------------------
 
-        //set the language of the SMS text that will be sent with the setLanuageCode() method.
+        //set the language of the SMS text that will be sent with the setLanguageCode() method.
         auth.setLanguageCode(Locale.getDefault().language)
 
 
         //-----------------------------------------------------------------------------------------------------------//
 
-//        callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-//
-//            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-//                // This callback will be invoked in two situations:
-//                // 1 - Instant verification. In some cases the phone number can be instantly
-//                //     verified without needing to send or enter a verification code.
-//                // 2 - Auto-retrieval. On some devices Google Play services can automatically
-//                //     detect the incoming verification SMS and perform verification without
-//                //     user action.
-//                Log.d(TAG, "onVerificationCompleted:$credential")
-//            }
-//
-//            override fun onVerificationFailed(e: FirebaseException) {
-//                // This callback is invoked in an invalid request for verification is made,
-//                // for instance if the the phone number format is not valid.
-//                Log.d(TAG, "onVerificationFailed", e)
-//
-//                if (e is FirebaseAuthInvalidCredentialsException) {
-//                    // Invalid request
-//                } else if (e is FirebaseTooManyRequestsException) {
-//                    // The SMS quota for the project has been exceeded
-//                }
-//
-//                // Show a message and update the UI
-//            }
-//
-//            override fun onCodeSent(
-//                verificationId: String,
-//                token: PhoneAuthProvider.ForceResendingToken
-//            ) {
-//                // The SMS verification code has been sent to the provided phone number, we
-//                // now need to ask the user to enter the code and then construct a credential
-//                // by combining the code with a verification ID.
-//                Log.d(TAG, "onCodeSent:$verificationId")
-//
-//                // Save verification ID and resending token so we can use them later
-//                storedVerificationId = verificationId
-//                resendToken = token
-//            }
-//        }
+        callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+                // This callback will be invoked in two situations:
+                // 1 - Instant verification. In some cases the phone number can be instantly
+                //     verified without needing to send or enter a verification code.
+                // 2 - Auto-retrieval. On some devices Google Play services can automatically
+                //     detect the incoming verification SMS and perform verification without
+                //     user action.
+                Log.d(TAG, "onVerificationCompleted:$credential")
+            }
+
+            override fun onVerificationFailed(e: FirebaseException) {
+                // This callback is invoked in an invalid request for verification is made,
+                // for instance if the the phone number format is not valid.
+                Log.d(TAG, "onVerificationFailed", e)
+
+                if (e is FirebaseAuthInvalidCredentialsException) {
+                    // Invalid request
+                } else if (e is FirebaseTooManyRequestsException) {
+                    // The SMS quota for the project has been exceeded
+                }
+
+                Toast.makeText(requireActivity(), e.message, Toast.LENGTH_SHORT).show()
+                // Show a message and update the UI
+            }
+
+            override fun onCodeSent(
+                verificationId: String,
+                token: PhoneAuthProvider.ForceResendingToken
+            ) {
+                // The SMS verification code has been sent to the provided phone number, we
+                // now need to ask the user to enter the code and then construct a credential
+                // by combining the code with a verification ID.
+                Log.d(TAG, "onCodeSent:$verificationId")
+
+                // Save verification ID and resending token so we can use them later
+                storedVerificationId = verificationId
+                resendToken = token
+            }
+        }
 
 
 //---------------------------------------------------------------------------------------------------------------------------//
@@ -110,6 +112,16 @@ class VerifyPhoneFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        //----------------------------------------------------------------------------------------------------//
+
+
+        // one minute timer before asking for another OPT pin
+        timer()
+
+        binding.resendPIN.setOnClickListener {
+            timer()
+        }
         //----------------------------------------------------------------------------------------------------//
 
         //TODO------------------------------
@@ -123,17 +135,31 @@ class VerifyPhoneFragment : Fragment() {
 //            .build()
 //        PhoneAuthProvider.verifyPhoneNumber(options)
 //        Log.d(TAG,phoneNumber)
-//        //-----------------------------------------------------------------//
 
+        getOPT()
+        //-----------------------------------------------------------------//
+
+        binding.resendPIN.setOnClickListener {
+
+            getOPT()
+        }
 
         //TODO------------------------------
 
 
+        // take pin number that user entered then signInWithPhoneAuthCredential
+        // (check if pin number that user entered same as the pin user receive from firebase)
         binding.virfyPhoneTVButton.setOnClickListener {
 
-            val credential = PhoneAuthProvider.getCredential(storedVerificationId!!, binding.virfyPhoneTV.text.toString())
+            val pinNumber = binding.virfyPhoneTV.text.toString()
+            if (pinNumber.isNotEmpty()||pinNumber.isNotBlank()){
 
-            signInWithPhoneAuthCredential(credential)
+                val credential = PhoneAuthProvider.getCredential(storedVerificationId!!, pinNumber)
+                signInWithPhoneAuthCredential(credential)
+            }else{
+                Toast.makeText(requireActivity(), R.string.not_empty_massage, Toast.LENGTH_SHORT).show()
+            }
+
 
         }
 
@@ -169,5 +195,42 @@ class VerifyPhoneFragment : Fragment() {
     }
 
     //--------------------------------------------------------------------------------------------------//
+
+
+   private fun timer(){
+
+       binding.resendPIN.visibility = View.INVISIBLE
+       binding.timerMassage.visibility = View.VISIBLE
+       binding.timerText.visibility = View.VISIBLE
+
+        val timer = object: CountDownTimer(60000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+
+                val seconds:Long=(millisUntilFinished / 1000) % 60
+                val minutes:Long=(millisUntilFinished / 60000)
+                binding.timerText.setText("$minutes : $seconds " )
+            }
+
+            override fun onFinish() {
+
+                binding.timerMassage.visibility = View.INVISIBLE
+                binding.timerText.visibility = View.INVISIBLE
+                binding.resendPIN.visibility = View.VISIBLE
+            }
+        }
+        timer.start()
+}
+
+    fun getOPT(){
+        Log.d(TAG,phoneNumber)
+        val options = PhoneAuthOptions.newBuilder(auth)
+            .setPhoneNumber(phoneNumber)       // Phone number to verify
+            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setActivity(requireActivity())                 // Activity (for callback binding)
+            .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
+        Log.d(TAG,phoneNumber)
+    }
 
 }

@@ -14,6 +14,7 @@ import com.example.moqaida.R
 
 import com.example.moqaida.databinding.FragmentSignUpBinding
 import com.example.moqaida.model.Users
+import com.example.moqaida.util.RegisterValidations
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
@@ -36,6 +37,9 @@ class SignUpFragment : Fragment() {
     private lateinit var  confirmPassword: String
     private lateinit var phoneNumber :String
     private lateinit var phone :String
+
+
+    private val validator = RegisterValidations()
 
 
     //create an instance of FirebaseAuth and initialize it with the FirebaseAuth.getInstance() method
@@ -240,9 +244,20 @@ class SignUpFragment : Fragment() {
         if (email.isEmpty() || email.isBlank()) {
             binding.emailSignUpTV.error = getString(R.string.required)
             isAllDataFilled = false
-        } else {
-            binding.emailSignUpTV.error = null
+
+            } else {
+
+            //check email validate
+            if (validator.emailIsValid(email)){
+                isAllDataFilled = false
+                binding.emailSignUpTV.error = getString(R.string.invalid_email)
+
+            }else{
+                binding.emailSignUpTV.error = null
+            }
+
         }
+
 
 //        //check phone number
 //        if (phoneNumber.isEmpty() || phoneNumber.isBlank()) {
@@ -257,7 +272,15 @@ class SignUpFragment : Fragment() {
             binding.passwordSignUpTV.error = getString(R.string.required)
             isAllDataFilled = false
         } else {
-            binding.passwordSignUpTV.error = null
+
+            //check password validate
+            if (validator.passwordIsValid(password)){
+                isAllDataFilled = false
+                binding.passwordSignUpTV.error = getString(R.string.invalid_password_massage)
+
+            }else{
+                binding.passwordSignUpTV.error = null
+            }
         }
 
         //check confirmPassword

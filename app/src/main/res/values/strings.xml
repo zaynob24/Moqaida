@@ -265,6 +265,9 @@
     <string name="user_registers_successfully">User Registers Successfully</string>
     <string name="user_logged_in_successfully">User Logged in Successfully</string>
 
+    <string name="invalid_email">Invalid email</string>
+    <string name="invalid_password_massage">Your password should be at least 8 characters,contains 1 special character,small and capital characters</string>
+
 
     <!--  bartering-popup -->
     <string name="want_to_bartered">want to bartered !</string>
@@ -333,6 +336,7 @@
     <!-- Error massage -->
     <string name="required">Required</string>
     <string name="fill_required">please fill required</string>
+    <string name="not_empty_massage">field should not be empty</string>
 
     <!--    Bartering Dialog Fragment-->
     <string name="send_request_successfully">your requests has been sent</string>
@@ -344,4 +348,9 @@
 
     <!--   Bartering Request       -->
     <string name="hi_iam">Hi , I’m</string>
+
+    <!--   Verify phone       -->
+    <string name="resend_pin_code_massage">You can resend the PIN code after</string>
+    <string name="resend_pin_code">Resend PIN code</string>
+
 </resources>
