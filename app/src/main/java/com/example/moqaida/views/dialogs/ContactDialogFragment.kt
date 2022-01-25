@@ -52,7 +52,7 @@ class ContactDialogFragment (val requests: Requests): DialogFragment(){
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.descriptionBarteringDialog.setText(requests.itemNameMassage + requests.itemDescriptionMassage)
+        binding.descriptionBarteringDialog.setText("${requests.itemNameMassage}  \n ${requests.itemDescriptionMassage}")
 
         //-----------------------------------------------------------------//
 

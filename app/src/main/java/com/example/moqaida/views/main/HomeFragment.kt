@@ -43,9 +43,10 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        // link menu with action bar
-        requireActivity().menuInflater.inflate(R.menu.main_menu,menu)    }
+    // for search icon
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        // link menu with action bar
+//        requireActivity().menuInflater.inflate(R.menu.main_menu,menu)    }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

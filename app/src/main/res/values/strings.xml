@@ -352,5 +352,8 @@
     <!--   Verify phone       -->
     <string name="resend_pin_code_massage">You can resend the PIN code after</string>
     <string name="resend_pin_code">Resend PIN code</string>
+    <string name="enter_phone_number">Enter your Phone Number</string>
+    <string name="verify_phone_number">Verify your Phone Number</string>
+
 
 </resources>
