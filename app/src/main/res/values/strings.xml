@@ -264,6 +264,7 @@
 
     <string name="user_registers_successfully">User Registers Successfully</string>
     <string name="user_logged_in_successfully">User Logged in Successfully</string>
+    <string name="password_not_match">Password doesn\'t match</string>
 
     <string name="invalid_email">Invalid email</string>
     <string name="invalid_password_massage">Your password should be at least 8 characters,contains 1 special character,small and capital characters</string>
@@ -336,6 +337,7 @@
     <!-- Error massage -->
     <string name="required">Required</string>
     <string name="fill_required">please fill required</string>
+    <string name="fill_correctly">please fill correctly</string>
     <string name="not_empty_massage">field should not be empty</string>
 
     <!--    Bartering Dialog Fragment-->

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/materialCardView"
     android:layout_width="match_parent"
-    android:layout_height="107dp"
+    android:layout_height="115dp"
     android:layout_margin="8dp"
     android:backgroundTint="@color/lightGry"
     app:cardCornerRadius="10dp">
@@ -36,6 +36,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="50dp"
                 android:text="your phone"
+                android:theme="@style/textViewInCardView"
                 app:layout_constraintEnd_toStartOf="@+id/divider"
                 app:layout_constraintStart_toEndOf="@+id/deleteRequestIcon"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -70,6 +71,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="50dp"
                 android:text="Their laptob"
+                android:theme="@style/textViewInCardView"
                 app:layout_constraintEnd_toStartOf="@+id/divider"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4" />
@@ -94,6 +96,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="Hi , I’m zainab ALjutayl"
+                android:theme="@style/textViewInCardView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/divider"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -105,6 +108,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:theme="@style/textViewInCardView"
                 android:text="my laptob brandHP Pavilion Aero Laptop 13-be0007nx..."
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/divider"

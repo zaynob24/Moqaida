@@ -8,11 +8,16 @@
         android:id="@+id/ItemDetailsFragment"
         android:name="com.example.moqaida.views.main.ItemDetailsFragment"
         android:label="Item Details"
-        tools:layout="@layout/fragment_item_details" />
+        tools:layout="@layout/fragment_item_details" >
+        <action
+            android:id="@+id/action_ItemDetailsFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.moqaida.views.main.HomeFragment"
-        android:label="Home">
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_ItemDetailsFragment"
             app:destination="@id/ItemDetailsFragment" />
@@ -20,7 +25,8 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.moqaida.views.idintity.LoginFragment"
-        android:label="Login">
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
@@ -34,7 +40,8 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.moqaida.views.idintity.SignUpFragment"
-        android:label="SignUp">
+        android:label="SignUp"
+        tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -54,7 +61,8 @@
     <fragment
         android:id="@+id/myItemFragment"
         android:name="com.example.moqaida.views.main.MyItemFragment"
-        android:label="My Item">
+        android:label="My Item"
+        tools:layout="@layout/fragment_my_item">
         <action
             android:id="@+id/action_myItemFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -68,7 +76,8 @@
     <fragment
         android:id="@+id/addItemFragment"
         android:name="com.example.moqaida.views.main.AddItemFragment"
-        android:label="Add Item">
+        android:label="Add Item"
+        tools:layout="@layout/fragment_add_item">
         <action
             android:id="@+id/action_addItemFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -85,24 +94,19 @@
     <fragment
         android:id="@+id/updateItemFragment"
         android:name="com.example.moqaida.views.main.UpdateItemFragment"
-        android:label=" " />
-    <fragment
-        android:id="@+id/verifyPhoneDialogFragment"
-        android:name="com.example.moqaida.views.dialogs.VerifyPhoneDialogFragment"
-        android:label="VerifyPhoneDialogFragment" >
-        <action
-            android:id="@+id/action_verifyPhoneDialogFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment"
-            app:popUpTo="@id/signUpFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
+        android:label=" "
+        tools:layout="@layout/fragment_update_item" />
     <fragment
         android:id="@+id/enterPhoneFragment"
         android:name="com.example.moqaida.views.idintity.phone.EnterPhoneFragment"
-        android:label="EnterPhoneFragment" >
+        android:label="EnterPhoneFragment"
+        tools:layout="@layout/fragment_enterphone">
         <action
             android:id="@+id/action_enterPhoneFragment_to_verifyPhoneFragment"
             app:destination="@id/verifyPhoneFragment" />
+        <action
+            android:id="@+id/action_enterPhoneFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/verifyPhoneFragment"
@@ -113,4 +117,13 @@
             android:id="@+id/action_verifyPhoneFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/barteringDialogFragment"
+        android:name="com.example.moqaida.views.dialogs.BarteringDialogFragment"
+        android:label="BarteringDialogFragment"
+        tools:layout="@layout/fragment_bartering_dialog">
+        <action
+            android:id="@+id/action_barteringDialogFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </dialog>
 </navigation>

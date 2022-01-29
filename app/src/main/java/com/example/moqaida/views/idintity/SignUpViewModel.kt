@@ -38,6 +38,9 @@ class SignUpViewModel(application: Application) : AndroidViewModel(application) 
                 response.addOnCompleteListener {
                     if (it.isSuccessful) {
                         insertUser(user)
+                    }else{
+                        Log.d(TAG, "SignUp failed")
+                        signUpErrorLiveData.postValue("SignUp failed")
                     }
                 }
             } catch (e: Exception) {

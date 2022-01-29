@@ -14,7 +14,7 @@ class Splash : AppCompatActivity() {
 
 
         intent= Intent(this, MainActivity::class.java)
-        object: CountDownTimer(1000,1000){
+        object: CountDownTimer(500,500){
             override fun onTick(p0: Long) {
 
             }

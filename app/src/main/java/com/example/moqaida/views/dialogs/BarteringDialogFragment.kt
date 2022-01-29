@@ -20,6 +20,7 @@ import com.example.moqaida.repositories.SHARED_PREF_FILE
 import com.example.moqaida.repositories.USER_EMAIL
 import com.example.moqaida.repositories.USER_NAME
 import com.example.moqaida.repositories.USER_PHONE
+import com.google.firebase.auth.FirebaseAuth
 
 private const val TAG = "BarteringDialogFragment"
 class BarteringDialogFragment (val item:Items): DialogFragment(){
@@ -30,6 +31,8 @@ class BarteringDialogFragment (val item:Items): DialogFragment(){
     private lateinit var  description: String
 
     private lateinit var progressDialog: ProgressDialog
+
+    val  firebaseAuth = FirebaseAuth.getInstance()
 
     private val barteringDialogViewModel: BarteringDialogViewModel by activityViewModels()
 
@@ -51,6 +54,10 @@ class BarteringDialogFragment (val item:Items): DialogFragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        checkLoggedInState()
+
+
 
         observer()
 
@@ -97,6 +104,13 @@ class BarteringDialogFragment (val item:Items): DialogFragment(){
 
         binding.closeBarteringButton.setOnClickListener {
             dismiss()
+        }
+
+        binding.loginTV.setOnClickListener {
+
+            findNavController().navigate(R.id.action_ItemDetailsFragment_to_loginFragment)
+            dismiss()
+
         }
 
         }
@@ -173,6 +187,25 @@ class BarteringDialogFragment (val item:Items): DialogFragment(){
                 barteringDialogViewModel.sendBarteringRequestErrorLiveData.postValue(null)
             }
         })
+
+    }
+
+    //--------------------------------------------------------------------------------------------------------------//
+
+    private fun checkLoggedInState() {
+
+        firebaseAuth.currentUser?.let {
+
+            // user logged in!
+            binding.barteringLayout.visibility = View.VISIBLE
+            binding.barteringNotLoginLayout.visibility = View.GONE
+
+        }?:run {
+            // user are not logged in
+            binding.barteringNotLoginLayout.visibility = View.VISIBLE
+            binding.barteringLayout.visibility = View.GONE
+
+        }
 
     }
 }

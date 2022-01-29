@@ -14,6 +14,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.moqaida.R
 import com.example.moqaida.databinding.FragmentLoginBinding
+import com.example.moqaida.model.Users
 import com.example.moqaida.repositories.*
 import com.google.firebase.auth.FirebaseAuth
 
@@ -29,6 +30,9 @@ class LoginFragment : Fragment() {
     private lateinit var sharedPrefEditor: SharedPreferences.Editor
 
     private lateinit var firebaseAuth: FirebaseAuth
+
+    private lateinit var  email: String
+    private lateinit var  password: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, avedInstanceState: Bundle?): View? {
 
@@ -60,39 +64,17 @@ class LoginFragment : Fragment() {
 
 
         binding.loginButton.setOnClickListener {
-            val email:String= binding.emailLoginTV.text.toString().trim()
-            val password:String= binding.passwordLoginTV.text.toString().trim()
 
-            if(email.isNotEmpty()&& password.isNotEmpty()){
-
+            takeEntryData() // to collect items data from all fields
+            if (checkEntryData()){ // to check if all field contain data and give error massage if not
                 progressDialog.show()
-                Log.d(TAG, "Inside if password == confirmPassword")
-                loginViewModel.login(email, password)
 
+                loginViewModel.login(email, password)
+            }else{
+                Toast.makeText(requireContext(),getText(R.string.fill_required), Toast.LENGTH_SHORT).show()
             }
         }
-
-
-//        binding.logutbutton.setOnClickListener {
-//            firebaseAuth.signOut()
-//
-//            // clear User Info  in shared Pref
-//            sharedPrefEditor.clear()
-//                .commit()
-//
-//            checkLoggedInState()
-//
-//        }
     }
-
-
-//    private fun checkLoggedInState() {
-//
-//        firebaseAuth.currentUser?.let {
-//            binding.loginStatetextView.text = "You are logged in!"
-//        }?:run { binding.loginStatetextView.text = "You are not logged in" }
-//
-//    }
 
 
     private fun observer() {
@@ -120,6 +102,45 @@ class LoginFragment : Fragment() {
             }
         })
 
+    }
+
+
+    //------------------------------------------------------------------------------------------------------------//
+
+    // to collect post data from all fields
+    private fun takeEntryData() {
+
+         email = binding.emailLoginTV.text.toString().trim()
+         password = binding.passwordLoginTV.text.toString().trim()
+
+    }
+
+    //--------------------------------------------------------------------------------------------------------------//
+
+    // to check if all field contain data and give error massage if not
+    private fun checkEntryData() : Boolean {
+        var isAllDataFilled = true
+
+
+        //check email
+        if (email.isEmpty() || email.isBlank()) {
+            binding.emailLoginTextField.error = getString(R.string.required)
+            isAllDataFilled = false
+
+        } else {
+                binding.emailLoginTextField.error = null
+        }
+
+        //check password
+        if (password.isEmpty() || password.isBlank()) {
+            binding.passwordLoginTextField.error = getString(R.string.required)
+            isAllDataFilled = false
+        } else {
+
+                binding.passwordLoginTextField.error = null
+        }
+
+        return isAllDataFilled
     }
 
 }

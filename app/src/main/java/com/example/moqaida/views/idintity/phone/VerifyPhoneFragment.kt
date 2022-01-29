@@ -26,7 +26,6 @@ class VerifyPhoneFragment : Fragment() {
     private lateinit var binding: FragmentVierfyPhoneBinding
     private lateinit var progressDialog: ProgressDialog
 
-    //val phoneNumber = "+966548048523"
     private lateinit var phoneNumber : String
 
     //create an instance of FirebaseAuth and initialize it with the FirebaseAuth.getInstance() method
@@ -42,9 +41,10 @@ class VerifyPhoneFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
         phoneNumber = arguments?.getString(PHONE_ID_KEY)!!
 
-        Log.d(TAG,"see:"+ phoneNumber)
+        Log.d(TAG,"check phone:"+ phoneNumber)
 
         progressDialog = ProgressDialog(requireActivity())
         progressDialog.setTitle("Loading...")
@@ -113,38 +113,29 @@ class VerifyPhoneFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        //TODO ERASE
+        binding.goo.setOnClickListener {
+
+            val args = Bundle()
+            args.putString(PHONE_ID_KEY, phoneNumber)
+
+            findNavController().navigate(R.id.action_verifyPhoneFragment_to_signUpFragment,args)
+        }
+
         //----------------------------------------------------------------------------------------------------//
 
 
         // one minute timer before asking for another OPT pin
+
+        //TODO : Enable
+      //  getOPT()
         timer()
-
-        binding.resendPIN.setOnClickListener {
-            timer()
-        }
-        //----------------------------------------------------------------------------------------------------//
-
-        //TODO------------------------------
-
-//        Log.d(TAG,phoneNumber)
-//        val options = PhoneAuthOptions.newBuilder(auth)
-//            .setPhoneNumber(phoneNumber)       // Phone number to verify
-//            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-//            .setActivity(requireActivity())                 // Activity (for callback binding)
-//            .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
-//            .build()
-//        PhoneAuthProvider.verifyPhoneNumber(options)
-//        Log.d(TAG,phoneNumber)
-
-        getOPT()
-        //-----------------------------------------------------------------//
-
         binding.resendPIN.setOnClickListener {
 
             getOPT()
+            timer()
         }
-
-        //TODO------------------------------
+        //----------------------------------------------------------------------------------------------------//
 
 
         // take pin number that user entered then signInWithPhoneAuthCredential
@@ -178,7 +169,10 @@ class VerifyPhoneFragment : Fragment() {
 
                     val user = task.result?.user
 
-                    findNavController().navigate(R.id.action_verifyPhoneFragment_to_signUpFragment)
+                    val args = Bundle()
+                    args.putString(PHONE_ID_KEY, phoneNumber)
+
+                    findNavController().navigate(R.id.action_verifyPhoneFragment_to_signUpFragment,args)
 
 
                 } else {
