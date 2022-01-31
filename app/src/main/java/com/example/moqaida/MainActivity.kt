@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         when(navController.currentDestination?.id) {
             R.id.homeFragment -> finish()
+            R.id.enterPhoneFragment -> navController.navigate(R.id.action_enterPhoneFragment_to_loginFragment)
             else -> super.onBackPressed()
         }
     }

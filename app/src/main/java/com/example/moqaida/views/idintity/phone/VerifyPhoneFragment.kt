@@ -113,22 +113,21 @@ class VerifyPhoneFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        //TODO ERASE
-        binding.goo.setOnClickListener {
-
-            val args = Bundle()
-            args.putString(PHONE_ID_KEY, phoneNumber)
-
-            findNavController().navigate(R.id.action_verifyPhoneFragment_to_signUpFragment,args)
-        }
+//        //TODO ERASE
+//        binding.goo.setOnClickListener {
+//
+//            val args = Bundle()
+//            args.putString(PHONE_ID_KEY, phoneNumber)
+//
+//            findNavController().navigate(R.id.action_verifyPhoneFragment_to_signUpFragment,args)
+//        }
 
         //----------------------------------------------------------------------------------------------------//
 
 
         // one minute timer before asking for another OPT pin
 
-        //TODO : Enable
-      //  getOPT()
+        getOPT()
         timer()
         binding.resendPIN.setOnClickListener {
 
@@ -145,8 +144,13 @@ class VerifyPhoneFragment : Fragment() {
             val pinNumber = binding.virfyPhoneTV.text.toString()
             if (pinNumber.isNotEmpty()||pinNumber.isNotBlank()){
 
-                val credential = PhoneAuthProvider.getCredential(storedVerificationId!!, pinNumber)
-                signInWithPhoneAuthCredential(credential)
+                val credential = storedVerificationId?.let { it1 ->
+                    PhoneAuthProvider.getCredential(
+                        it1, pinNumber)
+                }
+                if (credential != null) {
+                    signInWithPhoneAuthCredential(credential)
+                }
             }else{
                 Toast.makeText(requireActivity(), R.string.not_empty_massage, Toast.LENGTH_SHORT).show()
             }

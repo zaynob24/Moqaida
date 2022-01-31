@@ -63,24 +63,24 @@ class EnterPhoneFragment : Fragment() {
             findNavController().navigate(R.id.action_enterPhoneFragment_to_loginFragment)
         }
 
-        //TODO ERASE
-        binding.go.setOnClickListener {
-
-            takeEntryData()
-            Log.d(TAG,"go")
-            Log.d(TAG,startPhoneNumber)
-            Log.d(TAG,phoneNumber)
-
-            val completePhoneNumber = "+$startPhoneNumber$phoneNumber"
-            Log.d(TAG,completePhoneNumber)
-
-            val args = Bundle()
-            args.putString(PHONE_ID_KEY, completePhoneNumber)
-            Log.d(TAG,completePhoneNumber)
-           findNavController().navigate(R.id.action_enterPhoneFragment_to_verifyPhoneFragment,args)
-            Log.d(TAG,"completePhoneNumber")
-
-        }
+//        //TODO ERASE
+//        binding.go.setOnClickListener {
+//
+//            takeEntryData()
+//            Log.d(TAG,"go")
+//            Log.d(TAG,startPhoneNumber)
+//            Log.d(TAG,phoneNumber)
+//
+//            val completePhoneNumber = "+$startPhoneNumber$phoneNumber"
+//            Log.d(TAG,completePhoneNumber)
+//
+//            val args = Bundle()
+//            args.putString(PHONE_ID_KEY, completePhoneNumber)
+//            Log.d(TAG,completePhoneNumber)
+//           findNavController().navigate(R.id.action_enterPhoneFragment_to_verifyPhoneFragment,args)
+//            Log.d(TAG,"completePhoneNumber")
+//
+//        }
 
     }
 
