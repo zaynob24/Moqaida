@@ -55,6 +55,7 @@ class ProfileFragment : Fragment() {
             sharedPref.edit().clear()
                 .apply()
             checkLoggedInState()
+            findNavController().navigate(R.id.action_profileFragment2_to_homeFragment)
         }
 
     }

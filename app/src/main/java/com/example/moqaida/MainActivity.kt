@@ -46,4 +46,12 @@ class MainActivity : AppCompatActivity() {
         val  navController = findNavController(R.id.fragmentContainerView)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
+    // so when user in home page and click back press ,,app close
+    override fun onBackPressed() {
+        when(navController.currentDestination?.id) {
+            R.id.homeFragment -> finish()
+            else -> super.onBackPressed()
+        }
+    }
 }
