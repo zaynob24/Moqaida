@@ -115,7 +115,9 @@
         tools:layout="@layout/fragment_vierfy_phone">
         <action
             android:id="@+id/action_verifyPhoneFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
+            app:destination="@id/signUpFragment"
+            app:popUpTo="@id/verifyPhoneFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <dialog
         android:id="@+id/barteringDialogFragment"

@@ -8,7 +8,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.moqaida.R
+
 import com.example.moqaida.adapters.ItemsAdapter
 import com.example.moqaida.databinding.FragmentHomeBinding
 
@@ -61,6 +61,9 @@ class HomeFragment : Fragment() {
 //       // getItems()
 //        retrieveItems()
         observer()
+
+
+
     }
 
 //--------------------------------------------------------------------------------------------------------//
@@ -109,4 +112,7 @@ class HomeFragment : Fragment() {
                 homeViewModel.retrieveItemsErrorLiveData.postValue(null)
             }
         })    }
+
+
+
 }

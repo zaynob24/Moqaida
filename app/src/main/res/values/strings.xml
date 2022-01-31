@@ -342,6 +342,8 @@
 
     <!--    Bartering Dialog Fragment-->
     <string name="send_request_successfully">your requests has been sent</string>
+    <string name="login_to_barter">you have to login to be able to Barter</string>
+
 
     <!--   Delete item       -->
     <string name="alert_delete_massage">Are you sure you want to delete your item?</string>
@@ -350,6 +352,7 @@
 
     <!--   Bartering Request       -->
     <string name="hi_iam">Hi , I’m</string>
+    <string name="i_read_your_message">I read your message</string>
 
     <!--   Verify phone       -->
     <string name="resend_pin_code_massage">You can resend the PIN code after</string>

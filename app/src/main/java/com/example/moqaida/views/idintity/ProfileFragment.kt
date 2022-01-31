@@ -9,10 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.moqaida.R
 import com.example.moqaida.databinding.FragmentProfileBinding
-import com.example.moqaida.repositories.SHARED_PREF_FILE
-import com.example.moqaida.repositories.USER_EMAIL
-import com.example.moqaida.repositories.USER_ID
-import com.example.moqaida.repositories.USER_PHONE
+import com.example.moqaida.repositories.*
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -42,6 +39,7 @@ class ProfileFragment : Fragment() {
 
         binding.emailAdrresProfile.text = sharedPref.getString(USER_EMAIL,"")
         binding.phoneNumberProfile.text =  sharedPref.getString(USER_PHONE,"")
+        binding.nameProfile.text =  sharedPref.getString(USER_NAME,"")
 
         binding.loginTV.setOnClickListener {
 

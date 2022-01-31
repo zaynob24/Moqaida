@@ -43,12 +43,12 @@
         <TextView
             android:id="@+id/want_to_bartered_textView"
             style="@style/ColoredHeaderTextView"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
-            android:text="@string/want_to_bartered"
-            android:textStyle="bold" />
+            android:text="@string/want_to_bartered" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/itemNameBarteringFiled"
@@ -112,19 +112,22 @@
 
         <TextView
             android:id="@+id/notLogginTextView"
+            style="@style/ColoredHeaderTextView"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/not_loggin_massage" />
+            android:text="@string/want_to_bartered" />
 
         <TextView
-            android:id="@+id/loginTV"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="@string/Login"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16sp" />
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="@string/login_to_barter" />
+
     </LinearLayout>
 
 

@@ -77,7 +77,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:text="@string/forget_password" />
+            android:text="@string/forget_password"
+            tools:visibility="gone" />
 
         <Button
             android:id="@+id/loginButton"

@@ -106,12 +106,12 @@ class BarteringDialogFragment (val item:Items): DialogFragment(){
             dismiss()
         }
 
-        binding.loginTV.setOnClickListener {
-
-            findNavController().navigate(R.id.action_ItemDetailsFragment_to_loginFragment)
-            dismiss()
-
-        }
+//        binding.loginTV.setOnClickListener {
+//
+//            findNavController().navigate(R.id.action_ItemDetailsFragment_to_loginFragment)
+//            dismiss()
+//
+//        }
 
         }
 
@@ -199,12 +199,13 @@ class BarteringDialogFragment (val item:Items): DialogFragment(){
             // user logged in!
             binding.barteringLayout.visibility = View.VISIBLE
             binding.barteringNotLoginLayout.visibility = View.GONE
+            binding.closeBarteringButton.visibility = View.VISIBLE
 
         }?:run {
             // user are not logged in
             binding.barteringNotLoginLayout.visibility = View.VISIBLE
             binding.barteringLayout.visibility = View.GONE
-
+            binding.closeBarteringButton.visibility = View.GONE
         }
 
     }

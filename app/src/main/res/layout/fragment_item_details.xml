@@ -85,12 +85,14 @@
                     style="@style/TextAppearance.MaterialComponents.Body2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
+                    android:layout_marginEnd="8dp"
                     android:text="@string/purchased_price"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.41"
-                    app:layout_constraintStart_toEndOf="@+id/yearsOfUseDetails"
-                    app:layout_constraintTop_toBottomOf="@+id/divider2" />
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/yearsOfUseDetails" />
 
                 <TextView
                     android:id="@+id/purchasedPriceDetails"
@@ -99,12 +101,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="21dp"
+                    android:layout_marginEnd="8dp"
                     android:text="40$"
                     android:textColor="@color/colorSecondaryVariant"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/textView13"
-                    app:layout_constraintTop_toBottomOf="@+id/divider2" />
+                    app:layout_constraintTop_toBottomOf="@+id/yearsOfUseDetails" />
 
 
                 <View
@@ -117,7 +120,7 @@
                     android:background="?android:attr/listDivider"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/purchasedPriceDetails" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
 
                 <ImageView

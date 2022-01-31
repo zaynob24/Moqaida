@@ -9,5 +9,4 @@ class ItemDetailsViewModel : ViewModel() {
     val selectedLiveData = MutableLiveData<ArrayList<Items>>()
 
 
-
 }

@@ -3,6 +3,7 @@ package com.example.moqaida.views.dialogs
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,9 @@ import com.example.moqaida.views.main.BarteringRequestViewModel
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import com.example.moqaida.repositories.SHARED_PREF_FILE
+import com.example.moqaida.repositories.USER_NAME
+import com.google.firebase.auth.FirebaseAuth
 import java.lang.Exception
 import java.net.URLEncoder
 
@@ -31,6 +35,7 @@ class ContactDialogFragment (val requests: Requests): DialogFragment(){
     //private lateinit var  description: String
 
     private lateinit var progressDialog: ProgressDialog
+    val  firebaseAuth = FirebaseAuth.getInstance()
 
    // private val barteringRequestViewModel: BarteringRequestViewModel by activityViewModels()
 
@@ -52,7 +57,9 @@ class ContactDialogFragment (val requests: Requests): DialogFragment(){
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.descriptionBarteringDialog.setText("${requests.itemNameMassage}  \n ${requests.itemDescriptionMassage}")
+        binding.descriptionBarteringDialog.setText("${requests.itemNameMassage}\n${getString(R.string.hi_iam)} ${requests.user?.fullName}\n${requests.itemDescriptionMassage}")
+
+        val sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
 
         //-----------------------------------------------------------------//
 
@@ -62,12 +69,19 @@ class ContactDialogFragment (val requests: Requests): DialogFragment(){
             val packageManager = requireContext().packageManager
             val i = Intent(Intent.ACTION_VIEW)
 
+            //phone formate
             //966576269839
 
+                //message Example :
+                 /*
+                 Hi,I'm zainab
+                 I read your message " phone
+                  */
             try {
                 val url =
                     "https://api.whatsapp.com/send?phone=" + requests.user!!.phoneNumber + "&text=" + URLEncoder.encode(
-                        "${requests.itemNameMassage} \n ${requests.itemDescriptionMassage}" ,
+                        "${getString(R.string.hi_iam)} ${sharedPref.getString(USER_NAME,"").toString()}" +
+                                "\n${getString(R.string.i_read_your_message)}\n\"${requests.itemNameMassage} , ${requests.itemDescriptionMassage}\" \n" ,
                         "UTF-8"
                     )
                 i.setPackage("com.whatsapp")
@@ -92,7 +106,8 @@ class ContactDialogFragment (val requests: Requests): DialogFragment(){
             )
 
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, requests.itemNameMassage)
-            emailIntent.putExtra(Intent.EXTRA_TEXT, requests.itemDescriptionMassage)
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "${getString(R.string.hi_iam)} ${sharedPref.getString(USER_NAME,"").toString()}" +
+            "\n${getString(R.string.i_read_your_message)}\n\"${requests.itemNameMassage} , ${requests.itemDescriptionMassage}\" \n")
             startActivity(Intent.createChooser(emailIntent, "Send email..."))
         }
         //-----------------------------------------------------------------//

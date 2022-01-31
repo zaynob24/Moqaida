@@ -68,7 +68,9 @@ class FirebaseServiceRepository {
      fun retrieveUserInfo()=userCollection.document(firebaseAuth.currentUser!!.uid)
 
     // retrieve Items
-    suspend fun  retrieveItems() =  itemInfoCollection.get().await()
+    suspend fun  retrieveItems() =  itemInfoCollection.whereNotEqualTo(USER_ID,
+        firebaseAuth.currentUser?.uid
+    ).get().await()
 
     // retrieve My Items
     suspend fun  retrieveMyItems() =  itemInfoCollection.whereEqualTo(USER_ID,firebaseAuth.currentUser!!.uid).get().await()

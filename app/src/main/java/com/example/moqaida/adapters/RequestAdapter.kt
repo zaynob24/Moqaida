@@ -99,7 +99,7 @@ class RequestAdapter(val context: Context, val barteringRequestViewModel: Barter
             Log.d(TAG,request.item!!.itemName)
             binding.yourItemNameRequest.text =request.item.itemName
             binding.thierItemNameRequest.text = request.itemNameMassage
-            binding.theirNameTV.text = context.getString(R.string.hi_iam) + request.user!!.fullName
+            binding.theirNameTV.text = "${context.getString(R.string.hi_iam)} ${request.user!!.fullName}"
             binding.theirMassageTV.text = request.itemDescriptionMassage
 
             // To delete request
