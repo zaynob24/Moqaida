@@ -52,7 +52,6 @@ class VerifyPhoneFragment : Fragment() {
 
         //--------------------------------------------------------------------------------------------------------------------//
 
-          //TODO------------------------------
 
         //set the language of the SMS text that will be sent with the setLanguageCode() method.
         auth.setLanguageCode(Locale.getDefault().language)
@@ -148,8 +147,11 @@ class VerifyPhoneFragment : Fragment() {
                     PhoneAuthProvider.getCredential(
                         it1, pinNumber)
                 }
+
                 if (credential != null) {
                     signInWithPhoneAuthCredential(credential)
+                }else{
+                    Toast.makeText(requireActivity(),"wrong verification code", Toast.LENGTH_SHORT).show()
                 }
             }else{
                 Toast.makeText(requireActivity(), R.string.not_empty_massage, Toast.LENGTH_SHORT).show()
@@ -176,6 +178,9 @@ class VerifyPhoneFragment : Fragment() {
                     val args = Bundle()
                     args.putString(PHONE_ID_KEY, phoneNumber)
 
+                    // sign Out before continue to signUp Fragment
+                    // fix problem of  users who don't continue signeUp step
+                    auth.signOut()
                     findNavController().navigate(R.id.action_verifyPhoneFragment_to_signUpFragment,args)
 
 
